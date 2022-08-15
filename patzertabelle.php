@@ -1,7 +1,7 @@
 <?php
 
 function patzertabelle_fk() {
-    $patzerwurf = random_int(2,12);
+    $patzerwurf = random_int(1,6) + random_int(1,6);
     echo "Wurf: $patzerwurf" . "<br />";
 
     if ($patzerwurf == 2) {
@@ -20,7 +20,7 @@ function patzertabelle_fk() {
 }
 
 function patzertabelle_nk() {
-    $patzerwurf = random_int(2,12);
+    $patzerwurf = random_int(1,6) + random_int(1,6);
     echo "Wurf: $patzerwurf" . "<br />";
 
     if ($patzerwurf == 2) {
