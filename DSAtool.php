@@ -10,7 +10,24 @@
 
 <?php
 
-function trefferzone() {
+// Include functions from other files
+include('patzertabelle.php');
+include('trefferzone.php');
+
+if (isset($_POST['trefferzone'])) {
+    trefferzone();
+}
+
+if (isset($_POST['patzertabelle_fk'])) {
+    patzertabelle_fk();
+}
+
+if (isset($_POST['patzertabelle_nk'])) {
+    patzertabelle_nk();
+}
+
+
+/* function trefferzone() {
     $d20 = random_int(1,20);
     echo "Wurf: $d20" . "<br />";
     
@@ -54,9 +71,9 @@ function trefferzone() {
         echo "2. Wunde: MU, KL, IN, INI-Basis -4, INI - 4W6" . "<br />";
         echo "3. Wunde: +2W6 SP, bewusstlos, Blutverlust" . "<br />";
     }
-}
+} */
 
-function patzertabelle_fk() {
+/* function patzertabelle_fk() {
     $patzerwurf = random_int(2,12);
     echo "Wurf: $patzerwurf" . "<br />";
 
@@ -73,9 +90,9 @@ function patzertabelle_fk() {
         echo "Kameraden getroffen!". "<br />" . "INI -3; TP entsprechend Entfernung ausw&uuml;rfeln. Ansagen kommen nicht zum tragen. Ist kein Gef&auml;hrte in der N&auml;he, trifft sich der Sch&uuml;tze selbst.";
     }
 
-}
+} */
 
-function patzertabelle_nk() {
+/* function patzertabelle_nk() {
     $patzerwurf = random_int(2,12);
     echo "Wurf: $patzerwurf" . "<br />";
 
@@ -98,17 +115,5 @@ function patzertabelle_nk() {
         echo "Schwerer Eigentreffer". "<br />" . "INI -4; doppelter Waffenschaden. Keine zus&auml;tzlichen TP durch KK-Bonus oder Ansagen";
     }
 
-}
-
-if (isset($_POST['trefferzone'])) {
-    trefferzone();
-}
-
-if (isset($_POST['patzertabelle_fk'])) {
-    patzertabelle_fk();
-}
-
-if (isset($_POST['patzertabelle_nk'])) {
-    patzertabelle_nk();
-}
+} */
 ?> 
