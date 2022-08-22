@@ -8,3 +8,5 @@ Small tool for DSA
 ## To Do:
 - bonus and malus calculation on ranged attacks depending on distance and external circumstances
 - wound healing modificators
+- random weather generator
+- random nsc name generator
