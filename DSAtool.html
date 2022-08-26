@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DSA Tool</title>
+    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+    <style>
+        .button {
+          border: none;
+          color: white;
+          padding: 15px 32px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+          margin: 4px 2px;
+          cursor: pointer;
+        }
+        
+        .button1 {background-color: #4CAF50;} /* Green */
+        .button2 {background-color: #008CBA;} /* Blue */
+        .button3 {background-color: crimson}
+        </style>
+  </head>
+  <body>
+  <button id="submit" class="button button1" pys-onClick="trefferzone">Trefferzone</button>
+  <div id="output"></div>
+  <py-script src="./DSAtool.py"></py-script>
+  <button id="submit2" class="button button2" pys-onClick="patzertabelle_nk">Patzer Nahkampf</button>
+  <div id="output2"></div>
+  <py-script src="./DSAtool.py"></py-script>
+  <button id="submit3" class="button button3" pys-onClick="patzertabelle_fk">Patzer Fernkampf</button>
+  <div id="output3"></div>
+  <py-script src="./DSAtool.py"></py-script>
+  </body>
+</html>
