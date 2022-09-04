@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
     <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
     <style>
+        .h1 {
+          font-size:24px;
+        }
         .button {
           border: none;
           color: white;
@@ -25,14 +28,15 @@
         </style>
   </head>
   <body>
-  <button id="submit" class="button button1" pys-onClick="trefferzone">Trefferzone</button>
-  <div id="output"></div>
-  <py-script src="./DSAtool.py"></py-script>
-  <button id="submit2" class="button button2" pys-onClick="patzertabelle_nk">Patzer Nahkampf</button>
-  <div id="output2"></div>
-  <py-script src="./DSAtool.py"></py-script>
-  <button id="submit3" class="button button3" pys-onClick="patzertabelle_fk">Patzer Fernkampf</button>
-  <div id="output3"></div>
-  <py-script src="./DSAtool.py"></py-script>
+    <h1 class="h1">Zufallsgeneratoren</h1>
+    <button id="submit" class="button button1" pys-onClick="trefferzone">Trefferzone</button>
+    <div id="output"></div>
+    <py-script src="./DSAtool.py"></py-script>
+    <button id="submit2" class="button button2" pys-onClick="patzertabelle_nk">Patzer Nahkampf</button>
+    <div id="output2"></div>
+    <py-script src="./DSAtool.py"></py-script>
+    <button id="submit3" class="button button3" pys-onClick="patzertabelle_fk">Patzer Fernkampf</button>
+    <div id="output3"></div>
+    <py-script src="./DSAtool.py"></py-script>
   </body>
 </html>

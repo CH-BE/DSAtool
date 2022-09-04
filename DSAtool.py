@@ -101,3 +101,206 @@ def patzertabelle_nk(event):
         output += """INI -4; doppelter Waffenschaden. Keine zusätzlichen TP durch
         KK-Bonus oder Ansagen"""
     pyscript.write("output2", output)
+
+
+def size_mod(size_str):
+    """Looks up the size modificator for ranged attacks. Variable:
+    size_str: target size"""
+
+    size_mod = {
+        "kleiner als winzig": 10,
+        "winzig": 8,
+        "sehr klein": 6,
+        "klein": 4,
+        "mittel": 2,
+        "groß": 0,
+        "sehr groß": -2,
+        "größer als sehr groß": -4
+    }
+    return size_mod[size_str]
+
+
+def distance_mod(distance_str):
+    """Looks up the distance modificator for ranged attacks and returns
+    modificator. Variable:
+    distance_str: target distance"""
+
+    distance_mod = {
+        "sehr nah": -2,
+        "nah": 0,
+        "mittel": 4,
+        "weit": 8,
+        "extrem weit": 12
+    }
+    return distance_mod[distance_str]
+
+
+def movement_mod(movement_str):
+    """Looks up the movement modificator for ranged attacks and returns
+    modificator. Variable:
+    movement_str: target movement"""
+
+    movement_mod = {
+        "unbeweglich": -4,
+        "stillstehend": -2,
+        "leichte Bewegung": 0,
+        "schnelle Bewegung": 2,
+        "sehr schnelle Bewegung": 4,
+    }
+    return movement_mod[movement_str]
+
+
+def sight_mod(sight_arr, twilightVision, nightVision, nightblind):
+    """Looks up the sight modificator for ranged attacks and returns
+    modificator. Variable:
+    sight_str: clear, foggy, etc..."""
+
+    sight_mod1 = {
+        "Dunst": 2,
+        "Nebel": 4,
+        "Dämmerung": 0,
+        "Mondlicht": 0,
+        "Sternenlicht": 0,
+        "Finsternis": 0,
+        "Unsichtbares Ziel": 0
+    }
+    sight_mod2 = {
+        "Dunst": 0,
+        "Nebel": 0,
+        "Dämmerung": 2,
+        "Mondlicht": 4,
+        "Sternenlicht": 6,
+        "Finsternis": 8,
+        "Unsichtbares Ziel": 0
+    }
+    sight_mod3 = {
+        "Dunst": 0,
+        "Nebel": 0,
+        "Dämmerung": 0,
+        "Mondlicht": 0,
+        "Sternenlicht": 0,
+        "Finsternis": 0,
+        "Unsichtbares Ziel": 8
+    }
+
+    attack_mod = 0
+    night_factor = 1
+    if twilightVision:
+        night_factor = 0.5
+    if nightVision:
+        night_factor = 0.5
+    if nightblind:
+        night_factor = 2
+
+    for str in sight_arr:
+        # print(str)
+        attack_mod += (sight_mod1[str] +
+                       night_factor*sight_mod2[str] +
+                       sight_mod3[str])
+
+    return attack_mod
+
+
+def horse_mod(horseattack, horsesaddle, weapontype):
+    """Calculates modifications for ranged attacks from the back of a horse.
+    Variables:
+    horseattack (str): Describes movemement of the horse
+    horsesaddle (boolean): is a saddle available?
+    weapontype (str): Is it throwing or shooting?"""
+
+    horsemod = {
+        "none": 0,
+        "stehend": 1,
+        "Schritt": 2,
+        "Galopp": 4,
+    }
+    attack_mod = horsemod[horseattack]
+    if not horsesaddle:
+        attack_mod += 2
+    if weapontype == "Wurf":
+        attack_mod = 2*attack_mod
+    return attack_mod
+
+
+def fk_mod(size, distance, movement, sight, protection=0,
+           twilightVision=False, distanceView=False,
+           nightVision=False, oneEyed=False, colorblind=False,
+           shortsighted=False, nightblind=False, weapontype="Schuss",
+           steepshot="none", sidewind="none", quickshot=False,
+           range_SF="none", horseattack="none", horsesaddle=True,
+           underwater=False, dis=0):
+    """Calculates the modifcation for a ranged attack. Variables:
+    size (str): target size (kleiner als winzig, winzig, sehr klein, klein,
+                mittel, groß, sehr groß, größer als sehr groß)
+    distance (str): distance to target (sehr nah, nah, mittel,
+                    weit, extrem weit)
+    movement (srt): movemement of target (unbeweglich, stillstehend, leicht,
+                    schnell, sehr schnell, kampfgetuemmel)
+    sight (str array): sight to target (Dunst, Nebel, Daemmerung, Mondlicht,
+                       Sternenlicht, Finsternis, Unsichtbares Ziel)
+    protection (int): protection e.g. through shields (0, 2 or 4)
+    twilightVision (boolean): advantage Daemmerungssicht available?
+    distanceView (boolean): advantage Entfernungssicht available?
+    nightVision (boolean): advantage Nachtsicht available?
+    oneEyed (boolean): disadvantage einäugig activated?
+    colorblind (boolean): disadvantage farbenblind activated?
+    shortsighted (boolean): disadvantage kurzsichtig activated?
+    nightblind (boolean): disadvantage nightblind activated?
+    steepshot (str): steep shot? (none, up, down)
+    sidewind (str): sidewind? (böig, stark böig)
+    quickshot (str): quickshot? (no, yes)
+    range_SF (str): range combat special abilities? (none, Scharfschütze,
+                    Meisterschütze)
+    horseattack (str): Attack from the back of a horse? (none, stehend,
+                       Schritt, Galopp)
+    horsesaddle (boolean): Horsesaddle available?
+    underwater (boolean): Shoot under water?
+    dis (int): Distance from target in [Schritt]
+    """
+
+    fk_mod = 0  # Fernkampf Modifikator
+    fk_mod += (size_mod(size) +
+               distance_mod(distance) +
+               protection +
+               movement_mod(movement) +
+               horse_mod(horseattack, horsesaddle, weapontype) +
+               sight_mod(sight, twilightVision, nightVision, nightblind))
+
+    # Steilschuss für Wurf- und Schusswaffen
+    if steepshot == "up":
+        if weapontype == "Schuss":
+            fk_mod += 4
+        else:
+            fk_mod += 8
+    elif steepshot == "down":
+        fk_mod += 2
+
+    # Windeinfluss
+    if sidewind == "böig":
+        fk_mod += 4
+    elif sidewind == "stark böig":
+        fk_mod += 8
+
+    # Vor- und Nachteile
+    if distanceView:
+        fk_mod = -2
+    if oneEyed and dis < 10:
+        fk_mod += 4
+    if colorblind and dis > 50:
+        fk_mod += 4
+    if shortsighted and dis > 100:
+        print("Meisterentscheid!")
+
+    # Schnellschuss
+    if quickshot:
+        qs_factor = 1
+        if range_SF == "Scharfschütze":
+            qs_factor = 0.5
+        if range_SF == "Meisterschütze":
+            qs_factor = 0
+        fk_mod += (qs_factor * 2)
+
+    if underwater:
+        fk_mod += 5  # 3 von unter Wasser, 2 durch geringere Zielgröße
+
+    print(fk_mod)
