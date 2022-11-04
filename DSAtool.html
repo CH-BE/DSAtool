@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
     <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
     <style>
+        .html {
+          scroll-behavior: smooth;
+        }
         .body {
           background-color: #CCCCCC;
         }
@@ -27,8 +30,17 @@
         
         .button1 {background-color: #4CAF50;} /* Green */
         .button2 {background-color: #008CBA;} /* Blue */
-        .button3 {background-color: crimson}
-        .button4 {background-color: darkorange}
+        .button3 {background-color: crimson;}
+        .button4 {background-color: darkorange;}
+        .output4 {
+          background-color: grey;
+          scroll-margin-block-start: 550px;
+          scroll-margin-block-end: 550px;
+        }
+        table {
+          width: 100%;
+          border-collapse: collapse;
+        }
         </style>
   </head>
   <body class="body">
@@ -48,14 +60,6 @@
     <br>
     <h1 class="h1">Fernkampf Modifikatoren</h1><br>
     <table>
-      <tr>
-        <td><b>Ergebnis:</b></td>
-        <td><b><div id="output4"></div></b></td>
-      </tr>
-      <tr>
-        <td><hr></td>
-        <td><hr></td>
-      </tr>
       <form onsubmit="return false">
         <tr>
           <td><label for="size">Zielgröße:</label></td>
@@ -97,8 +101,6 @@
             <option value="Dunst">Dunst</option>
             <option value="Nebel">Nebel</option>
           </select></td>
-        </tr>
-        <tr>
           <td><label for="sight2">Sichtverhältnisse 2:</label></td>
           <td><select name="sight2" id="sight2">
             <option value="none">keine Dunkelheit</option>
@@ -107,8 +109,6 @@
             <option value="Sternenlicht">Sternenlicht</option>
             <option value="Finsternis">Finster</option>
           </select></td>
-        </tr>
-        <tr>
           <td><label for="sight3">Sichtverhältnisse 3:</label></td>
           <td><select name="sight3" id="sight3">
             <option value="none">Sichtbares Ziel</option>
@@ -119,8 +119,8 @@
           <td><label for="protection">Deckung:</label></td>
           <td><select name="protection" id="protection">
             <option value="none">keine</option>
-            <option value="halb">halbe Deckung (z.B. große Schilde)</option>
-            <option value="dreiviertel">dreiviertel Deckung (z.B. sehr große Schilde)</option>
+            <option value="halb">1/2-Deckung (z.B. große Schilde)</option>
+            <option value="dreiviertel">3/4-Deckung (z.B. sehr große Schilde)</option>
           </select></td>
         </tr>
         <tr>
@@ -129,15 +129,11 @@
             <option value="False">Nein</option>
             <option value="True">Ja</option>
           </select></td>
-        </tr>
-        <tr>
           <td><label for="distanceView">Entfernungssicht:</label></td>
           <td><select name="distanceView" id="distanceView">
             <option value="False">Nein</option>
             <option value="True">Ja</option>
           </select></td>
-        </tr>
-        <tr>
           <td><label for="nightVision">Nachtsicht:</label></td>
           <td><select name="nightVision" id="nightVision">
             <option value="False">Nein</option>
@@ -150,28 +146,21 @@
             <option value="False">Nein</option>
             <option value="True">Ja</option>
           </select></td>
-        </tr>
-        <tr>
           <td><label for="colorblind">Farbenblind:</label></td>
           <td><select name="colorblind" id="colorblind">
             <option value="False">Nein</option>
             <option value="True">Ja</option>
           </select></td>
-        </tr>
-        <tr>
           <td><label for="shortsighted">Kurzsichtig:</label></td>
           <td><select name="shortsighted" id="shortsighted">
             <option value="False">Nein</option>
             <option value="True">Ja</option>
           </select></td>
-        </tr>
-        <tr>
           <td><label for="nightblind">Nachtblind:</label></td>
           <td><select name="nightblind" id="nightblind">
             <option value="False">Nein</option>
             <option value="True">Ja</option>
           </select></td>
-        </tr>
         <tr>
           <td><label for="weapontype">Waffenart:</label></td>
           <td><select name="weapontype" id="weapontype">
@@ -218,8 +207,6 @@
             <option value="Schritt">Bewegung in Schritt</option>
             <option value="Galopp">Bewegung im Galopp</option>
           </select></td>
-        </tr>
-        <tr>
           <td><label for="horsesaddle">Sattel und Steigbügel:</label></td>
           <td><select name="horsesaddle" id="horsesaddle">
             <option value="True">Ja</option>
@@ -236,6 +223,13 @@
         <tr>
           <td><label for="dis">Entfernung zum Ziel (Schritt):</label></td>
           <td><input type="text" id="dis" name="dis" value="0 Schritt"><br></td>
+        </tr>
+        <tr>
+          <td><br></td>
+        </tr>
+        <tr>
+          <td><b>FK-Modifikator (> 0 ist Erschwernis):</b></td>
+          <td><b><div id="output4"></div></td>
         </tr>
         <tr>
           <td><input class="button button4" pys-onClick="fk_html_to_py" type="submit" id="btn-form" value="FK Modifikator berechnen">

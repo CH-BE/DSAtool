@@ -364,4 +364,4 @@ def fk_html_to_py(*args, **kwargs):
                  horsesaddle,
                  underwater,
                  dis)
-    result.write("FK-Modifikator (> 0 Erschwernis): %i" % mod)
+    result.write("%i" % mod)
