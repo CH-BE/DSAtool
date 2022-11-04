@@ -10,6 +10,7 @@ Kleines tool für DSA Sachen
 
 ## To Do:
 ### Fernkampf Modifikatoren (WdS S.93 ff)
+- Beschreibung zu Größen Entfernungen
 - Nachtsicht: max. -5 Modifikator ergibt keinen Sinn?
 - Kampfgetümmel nicht implementiert
 - Kurzsichtig
@@ -27,6 +28,7 @@ Kleines tool für DSA Sachen
     - Heilung Fördern: 2 Proben. 1. Probe --> allgemeine Versorgung der Verletzung (dauer 4 SR). Scheitert Probe KO-Probe um 3 erschwert, um zu sehen, ob Wundfieber ausbricht. 2. Probe --> Förderung der Regeneration (Regenerierung TaP*/2 LeP). Je 7 TaP* heilen eine Wunde sofort, alle 2 TaP* darüber hinaus geben auf nächste Regeneration einen Punkt Erleichterung auf die KO-Probe zum schließen von Wunden
     - HK Wunden am nächsten Tag (und folgenden): max. 1 Nachbehandlungsprobe pro Tag, 1 LeP zur Regeneration je 3 TaP* auf HK Wunden und KO-Probe ist je um 1 erleichtert. Scheitern der Nachbehandlung: Natürliche Heilung für 24h unterbrochen und 1W6 SP zusätzlich. Dauer je 6 SR
     - Erschwernis durch Wunden: Pro noch nicht verheilter Wunde ist Erstversorgungsprobe um zwei Punkte erschwert, Zweitversorgung um 3 Punkte
+    - Wundfieber Regeln von Stefan Grabatin
 
 ### Heilkräuter und -tränke (WdS S.160)
 - Kräuter mit Bonus zu nächtlicher Regeneration: rote Pfeilblüte, Tarnele, Vierblättrige Einbeere, Wirselkraut
