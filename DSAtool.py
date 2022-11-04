@@ -62,8 +62,8 @@ def patzertabelle_fk(event):
         output += "Fehlschuss!<br>"
         output += "INI -2; 2 Aktionen benötigt um wieder Schussbereit zu sein."
     elif patzer > 10:
-        "Kameraden getroffen!<br>"
-        """INI -3; TP entsprechend Entfernung auswürfeln. Ansagen kommen nicht
+        output += "Kameraden getroffen!<br>"
+        output += """INI -3; TP entsprechend Entfernung auswürfeln. Ansagen kommen nicht
         zum tragen. Ist kein Gefährte in der Nähe, trifft sich der Schütze
         selbst."""
     pyscript.write("output3", output)

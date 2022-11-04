@@ -47,146 +47,202 @@
     <br>
     <br>
     <h1 class="h1">Fernkampf Modifikatoren</h1><br>
-    <form onsubmit="return false">
-      <label for="size">Zielgröße:</label>
-      <select name="size" id="size">
-        <option value="kleiner als winzig">kleiner als winzig</option>
-        <option value="winzig">winzig</option>
-        <option value="sehr klein">sehr klein</option>
-        <option value="klein">klein</option>
-        <option value="mittel">mittel</option>
-        <option value="groß">groß</option>
-        <option value="sehr groß">sehr groß</option>
-        <option value="größer als sehr groß">größer als sehr groß</option>
-      </select><br>
-      <label for="distance">Entfernung:</label>
-      <select name="distance" id="distance">
-        <option value="sehr nah">sehr nah</option>
-        <option value="nah">nah</option>
-        <option value="mittel">mittel</option>
-        <option value="weit">weit</option>
-        <option value="extrem weit">extrem weit</option>
-      </select><br>
-      <label for="movement">Bewegung:</label>
-      <select name="movement" id="movement">
-        <option value="unbeweglich">unbeweglich</option>
-        <option value="stillstehend">stillstehend</option>
-        <option value="leicht">leicht</option>
-        <option value="schnell">schnell</option>
-        <option value="sehr schnell">sehr schnell</option>
-      </select><br>
-      <label for="sight1">Sichtverhältnisse 1:</label>
-      <select name="sight1" id="sight1">
-        <option value="none">kein Nebel/Dunst</option>
-        <option value="Dunst">Dunst</option>
-        <option value="Nebel">Nebel</option>
-      </select><br>
-      <label for="sight2">Sichtverhältnisse 2:</label>
-      <select name="sight2" id="sight2">
-        <option value="none">keine Dunkelheit</option>
-        <option value="Dämmerung">Dämmerung</option>
-        <option value="Mondlicht">Mondlicht</option>
-        <option value="Sternenlicht">Sternenlicht</option>
-        <option value="Finsternis">Finster</option>
-      </select><br>
-      <label for="sight3">Sichtverhältnisse 3:</label>
-      <select name="sight3" id="sight3">
-        <option value="none">Sichtbares Ziel</option>
-        <option value="Unsichtbares Ziel">Unsichtbares Ziel</option>
-      </select><br>
-      <label for="protection">Deckung:</label>
-      <select name="protection" id="protection">
-        <option value="none">keine</option>
-        <option value="halb">halbe Deckung (z.B. große Schilde)</option>
-        <option value="dreiviertel">dreiviertel Deckung (z.B. sehr große Schilde)</option>
-      </select><br>
-      <label for="twilightVision">Dämmerungssicht:</label>
-      <select name="twilightVision" id="twilightVision">
-        <option value="False">Nein</option>
-        <option value="True">Ja</option>
-      </select><br>
-      <label for="distanceView">Entfernungssicht:</label>
-      <select name="distanceView" id="distanceView">
-        <option value="False">Nein</option>
-        <option value="True">Ja</option>
-      </select><br>
-      <label for="nightVision">Nachtsicht:</label>
-      <select name="nightVision" id="nightVision">
-        <option value="False">Nein</option>
-        <option value="True">Ja</option>
-      </select><br>
-      <label for="oneEyed">Einäugig:</label>
-      <select name="oneEyed" id="oneEyed">
-        <option value="False">Nein</option>
-        <option value="True">Ja</option>
-      </select><br>
-      <label for="colorblind">Farbenblind:</label>
-      <select name="colorblind" id="colorblind">
-        <option value="False">Nein</option>
-        <option value="True">Ja</option>
-      </select><br>
-      <label for="shortsighted">Kurzsichtig:</label>
-      <select name="shortsighted" id="shortsighted">
-        <option value="False">Nein</option>
-        <option value="True">Ja</option>
-      </select><br>
-      <label for="nightblind">Nachtblind:</label>
-      <select name="nightblind" id="nightblind">
-        <option value="False">Nein</option>
-        <option value="True">Ja</option>
-      </select><br>
-      <label for="weapontype">Waffenart:</label>
-      <select name="weapontype" id="weapontype">
-        <option value="Schuss">Schusswaffe</option>
-        <option value="Wurf">Wurfwaffe</option>
-      </select><br>
-      <label for="steepshot">Steilschuss:</label>
-      <select name="steepshot" id="steepshot">
-        <option value="none">Nein</option>
-        <option value="up">nach oben</option>
-        <option value="down">nach unten</option>
-      </select><br>
-      <label for="sidewind">Seitenwind:</label>
-      <select name="sidewind" id="sidewind">
-        <option value="none">Nein</option>
-        <option value="böig">böig</option>
-        <option value="stark böig">stark böig</option>
-      </select><br>
-      <label for="quickshot">Schnellschuss:</label>
-      <select name="quickshot" id="quickshot">
-        <option value="False">Nein</option>
-        <option value="True">Ja</option>
-      </select><br>
-      <label for="range_SF">FK Sonderfertigkeiten:</label>
-      <select name="range_SF" id="range_SF">
-        <option value="none">keine</option>
-        <option value="Scharfschütze">Scharfschütze</option>
-        <option value="Meisterschütze">Meisterschütze</option>
-      </select><br>
-      <label for="horseattack">Angriff vom Pferderücken:</label>
-      <select name="horseattack" id="horseattack">
-        <option value="none">Nein</option>
-        <option value="stehend">stehendes Pferd</option>
-        <option value="Schritt">Bewegung in Schritt</option>
-        <option value="Galopp">Bewegung im Galopp</option>
-      </select><br>
-      <label for="horsesaddle">Sattel und Steigbügel:</label>
-      <select name="horsesaddle" id="horsesaddle">
-        <option value="True">Ja</option>
-        <option value="False">Nein</option>
-      </select><br>
-      <label for="underwater">Schuss/Wurf unter Wasser:</label>
-      <select name="underwater" id="underwater">
-        <option value="False">Nein</option>
-        <option value="True">Ja</option>
-      </select><br>
-      <label for="dis">Entfernung zum Ziel (Schritt):</label>
-      <input type="text" id="dis" name="dis" value="0 Schritt"><br>
-
-      <input class="button button4" pys-onClick="fk_html_to_py" type="submit" id="btn-form" value="FK Modifikator berechnen">
-      <py-script src="./DSAtool.py"></py-script>
-    </form>
-    <div id="output4"></div>
+    <table>
+      <tr>
+        <td><b>Ergebnis:</b></td>
+        <td><b><div id="output4"></div></b></td>
+      </tr>
+      <tr>
+        <td><hr></td>
+        <td><hr></td>
+      </tr>
+      <form onsubmit="return false">
+        <tr>
+          <td><label for="size">Zielgröße:</label></td>
+          <td><select name="size" id="size">
+            <option value="kleiner als winzig">kleiner als winzig</option>
+            <option value="winzig">winzig</option>
+            <option value="sehr klein">sehr klein</option>
+            <option value="klein">klein</option>
+            <option value="mittel">mittel</option>
+            <option value="groß">groß</option>
+            <option value="sehr groß">sehr groß</option>
+            <option value="größer als sehr groß">größer als sehr groß</option>
+          </select></td>
+        </tr>
+        <tr>
+          <td><label for="distance">Entfernung:</label></td>
+          <td><select name="distance" id="distance">
+            <option value="sehr nah">sehr nah</option>
+            <option value="nah">nah</option>
+            <option value="mittel">mittel</option>
+            <option value="weit">weit</option>
+            <option value="extrem weit">extrem weit</option>
+          </select></td>
+        </tr>
+        <tr>
+          <td><label for="movement">Bewegung:</label></td>
+          <td><select name="movement" id="movement">
+            <option value="unbeweglich">unbeweglich</option>
+            <option value="stillstehend">stillstehend</option>
+            <option value="leichte Bewegung">leicht</option>
+            <option value="schnelle Bewegung">schnell</option>
+            <option value="sehr schnelle Bewegung">sehr schnell</option>
+          </select></td>
+        </tr>
+        <tr>
+          <td><label for="sight1">Sichtverhältnisse 1:</label></td>
+          <td><select name="sight1" id="sight1">
+            <option value="none">kein Nebel/Dunst</option>
+            <option value="Dunst">Dunst</option>
+            <option value="Nebel">Nebel</option>
+          </select></td>
+        </tr>
+        <tr>
+          <td><label for="sight2">Sichtverhältnisse 2:</label></td>
+          <td><select name="sight2" id="sight2">
+            <option value="none">keine Dunkelheit</option>
+            <option value="Dämmerung">Dämmerung</option>
+            <option value="Mondlicht">Mondlicht</option>
+            <option value="Sternenlicht">Sternenlicht</option>
+            <option value="Finsternis">Finster</option>
+          </select></td>
+        </tr>
+        <tr>
+          <td><label for="sight3">Sichtverhältnisse 3:</label></td>
+          <td><select name="sight3" id="sight3">
+            <option value="none">Sichtbares Ziel</option>
+            <option value="Unsichtbares Ziel">Unsichtbares Ziel</option>
+          </select></td>
+        </tr>
+        <tr>
+          <td><label for="protection">Deckung:</label></td>
+          <td><select name="protection" id="protection">
+            <option value="none">keine</option>
+            <option value="halb">halbe Deckung (z.B. große Schilde)</option>
+            <option value="dreiviertel">dreiviertel Deckung (z.B. sehr große Schilde)</option>
+          </select></td>
+        </tr>
+        <tr>
+          <td><label for="twilightVision">Dämmerungssicht:</label></td>
+          <td><select name="twilightVision" id="twilightVision">
+            <option value="False">Nein</option>
+            <option value="True">Ja</option>
+          </select></td>
+        </tr>
+        <tr>
+          <td><label for="distanceView">Entfernungssicht:</label></td>
+          <td><select name="distanceView" id="distanceView">
+            <option value="False">Nein</option>
+            <option value="True">Ja</option>
+          </select></td>
+        </tr>
+        <tr>
+          <td><label for="nightVision">Nachtsicht:</label></td>
+          <td><select name="nightVision" id="nightVision">
+            <option value="False">Nein</option>
+            <option value="True">Ja</option>
+          </select></td>
+        </tr>
+        <tr>
+          <td><label for="oneEyed">Einäugig:</label></td>
+          <td><select name="oneEyed" id="oneEyed">
+            <option value="False">Nein</option>
+            <option value="True">Ja</option>
+          </select></td>
+        </tr>
+        <tr>
+          <td><label for="colorblind">Farbenblind:</label></td>
+          <td><select name="colorblind" id="colorblind">
+            <option value="False">Nein</option>
+            <option value="True">Ja</option>
+          </select></td>
+        </tr>
+        <tr>
+          <td><label for="shortsighted">Kurzsichtig:</label></td>
+          <td><select name="shortsighted" id="shortsighted">
+            <option value="False">Nein</option>
+            <option value="True">Ja</option>
+          </select></td>
+        </tr>
+        <tr>
+          <td><label for="nightblind">Nachtblind:</label></td>
+          <td><select name="nightblind" id="nightblind">
+            <option value="False">Nein</option>
+            <option value="True">Ja</option>
+          </select></td>
+        </tr>
+        <tr>
+          <td><label for="weapontype">Waffenart:</label></td>
+          <td><select name="weapontype" id="weapontype">
+            <option value="Schuss">Schusswaffe</option>
+            <option value="Wurf">Wurfwaffe</option>
+          </select></td>
+        </tr>
+        <tr>
+          <td><label for="steepshot">Steilschuss:</label></td>
+          <td><select name="steepshot" id="steepshot">
+            <option value="none">Nein</option>
+            <option value="up">nach oben</option>
+            <option value="down">nach unten</option>
+          </select></td>
+        </tr>
+        <tr>
+          <td><label for="sidewind">Seitenwind:</label></td>
+          <td><select name="sidewind" id="sidewind">
+            <option value="none">Nein</option>
+            <option value="böig">böig</option>
+            <option value="stark böig">stark böig</option>
+          </select></td>
+        </tr>
+        <tr>
+          <td><label for="quickshot">Schnellschuss:</label></td>
+          <td><select name="quickshot" id="quickshot">
+            <option value="False">Nein</option>
+            <option value="True">Ja</option>
+          </select></td>
+        </tr>
+        <tr>
+          <td><label for="range_SF">FK Sonderfertigkeiten:</label></td>
+          <td><select name="range_SF" id="range_SF">
+            <option value="none">keine</option>
+            <option value="Scharfschütze">Scharfschütze</option>
+            <option value="Meisterschütze">Meisterschütze</option>
+          </select></td>
+        </tr>
+        <tr>
+          <td><label for="horseattack">Angriff vom Pferderücken:</label></td>
+          <td><select name="horseattack" id="horseattack">
+            <option value="none">Nein</option>
+            <option value="stehend">stehendes Pferd</option>
+            <option value="Schritt">Bewegung in Schritt</option>
+            <option value="Galopp">Bewegung im Galopp</option>
+          </select></td>
+        </tr>
+        <tr>
+          <td><label for="horsesaddle">Sattel und Steigbügel:</label></td>
+          <td><select name="horsesaddle" id="horsesaddle">
+            <option value="True">Ja</option>
+            <option value="False">Nein</option>
+          </select></td>
+        </tr>
+        <tr>
+          <td><label for="underwater">Schuss/Wurf unter Wasser:</label></td>
+          <td><select name="underwater" id="underwater">
+            <option value="False">Nein</option>
+            <option value="True">Ja</option>
+          </select></td>
+        </tr>
+        <tr>
+          <td><label for="dis">Entfernung zum Ziel (Schritt):</label></td>
+          <td><input type="text" id="dis" name="dis" value="0 Schritt"><br></td>
+        </tr>
+        <tr>
+          <td><input class="button button4" pys-onClick="fk_html_to_py" type="submit" id="btn-form" value="FK Modifikator berechnen">
+            <py-script src="./DSAtool.py"></py-script></td>
+        </tr>
+      </form>
+    </table>
 
   </body>
 </html>
