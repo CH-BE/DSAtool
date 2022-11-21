@@ -1,0 +1,82 @@
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: white;
+}
+
+h1 {
+    font-size: 1.5em;
+  }
+
+.button {
+    border:none;
+    color: white;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1.0 em;
+    margin: 2px 2px;
+    cursor: pointer;
+}
+  
+.button1 {background-color: #4CAF50;} /* Green */
+.button2 {background-color: #008CBA;} /* Blue */
+.button3 {background-color: crimson;}
+.button4 {background-color: darkorange;}
+
+form {
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 1em;
+      font-size: 0.95em;
+}
+
+form label {
+    display: block;
+    font-size: 0.9em;
+    color: darkslategrey;
+    padding-left: 3px;
+}
+
+form select {
+    background-color: white;
+    min-width: 50%;
+    max-width: 100%;
+}
+
+.container {
+    display:table;
+}
+
+.table-row {
+    display:table-row;
+}
+
+.box2 { 
+    float: left;
+    width: 18%;
+    margin-right: 2%;
+    padding: 20px;
+    background: #eeeeee;
+    box-sizing: border-box;
+}
+
+.box2:last-child { 
+    margin-right: 0;
+}
+
+.bigbox { 
+    float: left;
+    width: 32%;
+    margin-right: 2%;
+    padding: 20px;
+    background: #eeeeee;
+    box-sizing: border-box;
+}
+
+.bigbox:last-child { 
+    margin-right: 0;
+}
