@@ -10,11 +10,9 @@ Kleines tool für DSA Sachen
 
 ## To Do:
 ### Fernkampf Modifikatoren (WdS S.93 ff)
-- Beschreibung zu Größen Entfernungen
 - Nachtsicht: max. -5 Modifikator ergibt keinen Sinn?
 - Kampfgetümmel nicht implementiert
 - Kurzsichtig
-- Tests fehlen
 - Implementierung mit gezielten Schüssen und Trefferzonen
 
 ### Weitere Punkte (WdS S.37)
