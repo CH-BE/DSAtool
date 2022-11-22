@@ -10,7 +10,7 @@
   </head>
   <body>
     <div class="container">
-        <h1 class="h1">Zufallsgeneratoren</h1>
+        <h1>Zufallsgeneratoren</h1>
         <br>
         <div class="bigbox">
             <button id="submit" class="button button1" pys-onClick="trefferzone">Trefferzone</button>
@@ -36,16 +36,16 @@
         <br>
     </div>
     <div class="container">
-        <h1 class="h1">Fernkampf Modifikatoren</h1><br>
+        <h1>Fernkampf Modifikatoren (WdS S. 93ff)</h1><br>
         <form onsubmit="return false">
             <div class ="box2">
                 <input class="button button4" pys-onClick="fk_html_to_py" type="submit" id="btn-form" value="FK-Mod berechnen">
                 <py-script src="./DSAtool.py"></py-script>
                 FK-Modifikator (Erschwernis > 0):
-                <b><div id="output4"></div>
+                <b><div id="output4"></div></b>
             </div>
             <div class="box2">
-                <label>Zielgröße</label>
+                <label>Zielgröße:</label>
                 <select name="size" id="size">
                     <option value="kleiner als winzig">kleiner als winzig</option>
                     <option value="winzig">winzig (z.B. Münze, Drachenauge, Maus, Kröte)</option>
@@ -56,7 +56,7 @@
                     <option value="sehr groß">sehr groß (z.B. Scheunentor, Drache, Elefant, Riese)</option>
                     <option value="größer als sehr groß">größer als sehr groß</option>
                 </select>
-                <label>Entfernung</label>
+                <label>Entfernung:</label>
                 <select name="distance" id="distance">
                     <option value="sehr nah">sehr nah</option>
                     <option value="nah">nah</option>
@@ -187,6 +187,90 @@
                 </select>
             </div>
         </form>
+    </div>
+    <div class="container">
+        <br>
+        <br>
+        <hr>
+        <br>
+        <br>
+    </div>
+    <div class="container">
+        <h1>Wundheilung & Heilkunde Wunden (WdS S. 37)</h1><br>
+        <div class="bigbox">
+            <h2>Wunden schließen</h2>
+            <ul>
+                <li><b>unbehandelte Wunden:</b><br>KO-Probe erschwert um 3x Anzahl der Wunden (1x täglich möglich)</li>
+                <li><b>nach erfolgreicher HK-Wunden Probe:</b><br>- pro 3 TaP* ist die KO-Probe um je 1 erleichtert<br>- je 7 TaP* schließen eine Probe sofort<br>- je 7 zurückgewonnene LeP durch einen magischen Heiltrank schließen eine Wunde sofort</li>
+            </ul>
+        </div>
+        <div class="bigbox">
+            <h2>Sofortige HK-Wunden</h2>
+            <ul>
+                <li>Erstversorgung erschwert um 2 je nicht verheilter Wunde</li>
+                <li><b>Erste Hilfe:</b><br>- Lebensbedrohliche Verletzung (LeP <= 0)<br>- HK-Wunden Probe um doppelte Anzahl der LeP unter 0 erschwert<br>- Dauer: (2xLeP unter 0) - TaP* KR, mindestens 2 KR<br>- gelungene Probe: LeP zurück auf 1<br>- misslungene Probe: Patient erhält 1W6 SP</li>
+                <li><b>Heilung fördern:</b><br>1. Probe:<br>- Allgemeine Versorgung der Verletzung (Dauer 4 SR)<br>- misslungene Probe: KO-Probe für Wundfieber ist um 3 erschwert<br>2. Probe<br>- Förderung der Heilung. Zu Regeneration: TaP*/2 LeP<br>- je 7 TaP* schließen eine Wunde sofort, je 2 TaP* darüber hinaus ist nächtliche KO-Probe zum schließen der Wunde um 1 erleichtert</li>
+            </ul>
+        </div>
+        <div class="bigbox">
+            <h2>Nachbehandlung HK-Wunden</h2>
+            <ul>
+                <li><b>Probe an Folgetagen:</b><br>- max. 1 Nachbehandlungsprobe pro Tag<br>- pro nicht verheilter Wunde, Probe erschwert um 3<br>- 1 LeP zur Regeneration je 3 TaP*<br>- je 3 TaP* KO-Probe um 1 erleichtert<br>- misslungene Probe: Regeneration für 24h ausgesetzt. 1W6 SP zusätzlich<br>- misslungene Probe: Patient erhält 1W6 SP<br>- Dauer: 6 SR</li>
+            </ul>
+        </div>
+    </div>
+    <div class="container">
+        <br>
+        <br>
+        <hr>
+        <br>
+        <br>
+    </div>
+    <div class="container">
+        <h1>Wundfieber (WdS S. 157f)</h1><br>
+        <div class="maxbox">
+            <ul>
+                <li>Prüfung auf Wundfieber bei 5 oder mehr SP an einem Tag: modifizierte KO-Probe am Abend nötig</li>
+                <li><b>Modifikatoren:</b><br>+ 1 bei über 25% LeP Verlust<br>+2 bei über 50% LeP Verlust<br>+3, wenn durch Krallen, Zähne oder verschmutzte Waffen entstanden<br>+4, wenn durch Untoten entstanden<br>-7 bei Vorteil Resistenz gegen Krankheiten<br>-15 bei Immunität gegen Krankheiten<br>+7 bei Krankheitsanfällig</li>
+                <li>Erleichterung der KO-Probe je nach HK-Wunden Probe</li>
+                <li><b>Auswirkungen:</b><br>- Dauer: W6 Tage<br>- 2W6 SP gleichmäßig verteilt über die Dauer<br>- KL - W3<br>- KK - W3<br>- Eigenschaften regenerieren sich um 1 je Tag<br>- Regeneration reduziert um -2 (auch bei 2 Regenerationsphasen) </li>
+            </ul>
+        </div>
+    </div>
+    <div class="container">
+        <br>
+        <br>
+        <hr>
+        <br>
+        <br>
+    </div>
+    <div class="container">
+        <h1>Heilkräuter & -tränke</h1><br>
+        <div class="bigbox">
+            <h2>Heilkräuter (WdS S. 160)</h2>
+            <ul>
+                <li><b>rote Pfeilblüte:</b><br>- Vorkommen: südaventurischer Dschungel und Sümpfe<br>- Identifizierung: Pflanzenkunde + 7<br>- Kosten: 10D pro Aufguss<br>- Wirkung: 3W6+2 LeP über 3 Stunden</li>
+                <li><b>Tarnele:</b><br>- Vorkommen: Wiesen, Wald und Sumpf in Mittel- und Nordaventurien<br>- Identifizierung: Pflanzenkunde + 4<br>- Kosten: 2S pro Portion Salbe<br>- Wirkung: +1 LeP zu nächtlicher Regeneration</li>
+                <li><b>Vierblättrige Einbeere:</b><br>- Vorkommen: Wald und Waldränder nördlich des Yaquir<br>- Identifizierung: Pflanzenkunde + 5<br>- Kosten: 4S pro Beere bzw. 15 D für eine Flasche Einbeerentrank mit 40 + 2W6 LeP<br>- Wirkung: gibt 1W3 LeP pro Stunde zurück, im Rahmen einer HK Wunden Probe 1W6 pro Stunde</li>
+                <li><b>Frisches Wirselkraut:</b><br>- Vorkommen: Steppen in ganz Aventurien<br>- Identifizierung: Pflanzenkunde + 5<br>- Kosten: 5D für eine Portion Salbe<br>- Wirkung: 5 LeP über Tag, wenn auf frische Wunde aufgetragen. Anwendung Salbe: 1W6+4 LeP</li>
+            </ul>
+        </div>
+        <div class="bigbox">
+            <h2>Heiltränke (WdA S. 56)</h2>
+            <ul>
+                <li><b>Qualität:</b><br>- A: 1W6 LeP und leichte Sinnestrübung (KL-1, GE-1 für 1 Stunde)<br>- B: 1W6+2 LeP<br>- C: 2W6+4 LeP<br>- D: 3W6+6 LeP<br>- E: Alle LeP zurück<br>- F: 3W6 + 25 LeP, auch über Grundwert, neutralisiert aber die Wirkung aller anderen alchimistisch-magischen Tränke, Gifte und Elixiere für eine Woche</li>
+                <li><b>Preis:</b><br>- unbestätige Qualität: ab 10 D<br>- bestätigte Qualität: bis zu 2 D pro LeP</li>
+                <li><b>Haltbarkeit:</b><br>1W6 + 20 Monde</li>
+            </ul>
+        </div>
+        <div class="bigbox">
+            <h2>Astraltränke (WdA S. 74)</h2>
+            <ul>
+                <li><b>Qualität:</b><br>- A: 1W6 AsP und leichte Geistesverwirrung (KL-2 für 1 Stunde)<br>- B: 2W6 AsP, muss jedoch innerhalb der nächsten Stunde verbraucht werden, sonst drohen schwere Kopfschmerzen (KL, IN, GE, FF je -4 für 7 Stunden)<br>- C: 3W6 AsP<br>- D: 3W6+6 AsP, auch über Maximum hinaus, allerdings gehen überschüssige AsP von den LeP verloren<br>- E: wie D, jedoch mit 5W6+6 AsP<br>- F: 2W20 + 5 AsP, auch über Grundwert, ohne LeP Abzug</li>
+                <li><b>Preis:</b><br>- unbestätige Qualität: mindestens 60 D<br>- bestätigte Qualität: bis zu 10 D pro AsP</li>
+                <li><b>Haltbarkeit:</b><br>2W6 + 30 Monde</li>
+            </ul>
+        </div>
     </div>
   </body>
 </html>

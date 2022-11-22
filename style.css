@@ -10,6 +10,11 @@ h1 {
     font-size: 1.5em;
   }
 
+h2 {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
 .button {
     border:none;
     color: white;
@@ -22,9 +27,9 @@ h1 {
     cursor: pointer;
 }
   
-.button1 {background-color: #4CAF50;} /* Green */
+.button1 {background-color: mediumseagreen;} /* Green */
 .button2 {background-color: #008CBA;} /* Blue */
-.button3 {background-color: crimson;}
+.button3 {background-color: tomato;}
 .button4 {background-color: darkorange;}
 
 form {
@@ -37,13 +42,14 @@ form {
 form label {
     display: block;
     font-size: 0.9em;
+    font-weight: bold;
     color: darkslategrey;
     padding-left: 3px;
 }
 
 form select {
     background-color: white;
-    min-width: 50%;
+    min-width: 100%;
     max-width: 100%;
 }
 
@@ -75,8 +81,28 @@ form select {
     padding: 20px;
     background: #eeeeee;
     box-sizing: border-box;
+    font-size: 1.0em;
 }
 
 .bigbox:last-child { 
     margin-right: 0;
 }
+
+.maxbox { 
+    float: left;
+    width: 100%;
+    padding: 20px;
+    background: #eeeeee;
+    box-sizing: border-box;
+    font-size: 1.0em;
+}
+
+.maxbox:last-child { 
+    margin-right: 0;
+}
+
+li {
+    font-size: 1.0em;
+    list-style: square;
+    margin-left: 2%;
+ }
