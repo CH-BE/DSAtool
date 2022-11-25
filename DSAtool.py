@@ -263,6 +263,7 @@ def fk_mod(size, distance, movement, sight1, sight2, sight3, protection="none",
     dis (int): Distance from target in [Schritt]
     """
 
+    shortsighted_output = ""  # Zusätzliche Ausgabe für den Fall, dass Nachteil kurzsichtig zum tragen kommt
     fk_mod = 0  # Fernkampf Modifikator
     fk_mod += (size_mod(size) +
                distance_mod(distance) +
@@ -299,7 +300,7 @@ def fk_mod(size, distance, movement, sight1, sight2, sight3, protection="none",
     if colorblind == "True" and dis > 50:
         fk_mod += 4
     if shortsighted == "True" and dis > 100:
-        print("Meisterentscheid!")
+        shortsighted_output = " + Meisterentscheid für zusätzliche Aufschläge durch Nachteil Kurzsichtig!"
 
     # Schnellschuss
     if quickshot == "True":
@@ -313,7 +314,7 @@ def fk_mod(size, distance, movement, sight1, sight2, sight3, protection="none",
     if underwater == "True":
         fk_mod += 5  # 3 von unter Wasser, 2 durch geringere Zielgröße
 
-    return fk_mod
+    return fk_mod, shortsighted_output
 
 
 def fk_html_to_py(*args, **kwargs):
@@ -341,6 +342,8 @@ def fk_html_to_py(*args, **kwargs):
     horsesaddle = f"{Element('horsesaddle').value}"
     underwater = f"{Element('underwater').value}"
     dis = f"{Element('dis').value}"
+    dis = int(dis)
+    print(dis)
     mod = fk_mod(size,
                  distance,
                  movement,
@@ -364,4 +367,5 @@ def fk_html_to_py(*args, **kwargs):
                  horsesaddle,
                  underwater,
                  dis)
-    result.write("%i" % mod)
+    output = str(mod[0]) + mod[1]
+    result.write(output)

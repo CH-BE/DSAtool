@@ -9,13 +9,12 @@ Kleines tool für DSA Sachen
     - Kampfgetümmel fehlt
 - HK-Wunden & Wundheilung
 - Heilkräuter
+- Gezielte Schüsse und Trefferzonen
 
 ## To Do:
 ### Fernkampf Modifikatoren (WdS S.93 ff)
 - Nachtsicht: max. -5 Modifikator ergibt keinen Sinn?
 - Kampfgetümmel nicht implementiert
-- Kurzsichtig
-- Implementierung mit gezielten Schüssen und Trefferzonen
 
 ### Zufallsgeneratoren 
 - Wetter (Abhängig von Region und Jahreszeit?)

@@ -13,6 +13,7 @@
         <nav>
             <a href="#Zufallsgeneratoren">Zufallsgeneratoren</a>
             <a href="#FKMod">FK-Modifikation</a>
+            <a href="#gezielterSchuss">Gezielte Schüsse & Trefferzonen</a>
             <a href="#Wundheilung">Wundheilung & HK-Wunden</a>
             <a href="#Wundfieber">Wundfieber</a>
             <a href="#Heilkraeuter">Heilkräuter & -tränke</a>
@@ -89,7 +90,7 @@
                         <option value="dreiviertel">3/4-Deckung (z.B. sehr große Schilde)</option>
                     </select>
                     <label for="dis">Entfernung zum Ziel (Schritt):</label>
-                    <input type="text" id="dis" name="dis" value="0 Schritt"><br>
+                    <input type="number" id="dis" name="dis" value="0"><br>
                 </div>
                 <div class="box2">
                     <label for="sight1">Sichtverhältnisse 1:</label>
@@ -197,6 +198,131 @@
                     </select>
                 </div>
             </form>
+        </div>
+        <div class="container">
+            <br>
+            <br>
+            <hr>
+            <br>
+            <br>
+        </div>
+        <div class="container">
+            <h1 id="gezielterSchuss">Gezielte Schüsse & Trefferzonen</h1>
+            <br>
+            <div class="maxbox">
+                <ul>
+                    <li><b>Zielen</b> (normal/Scharf- oder Meisterschütze): -1 pro 2 Aktionen / -1 pro Aktion (max. -4) </li>
+                    <li><b>Fernkampangriff mit Ansage:</b>
+                        <br>- nicht mit gezieltem Schuss auf eine Trefferzone kombinierbar
+                        <br>- normal: max. TaW Ansage, + Ansage/2 auf Schaden, + Ansage/2 Aktionen nötig
+                        <br>- Scharfschütze: max. TaW Ansage, + Ansage auf Schaden, + 2 Aktionen nötig
+                        <br>- Meisterschütze: max. Fernkampfwert Ansage, + Ansage auf Schaden, + 1 Aktion nötig
+                    </li>
+                    <li><b>Fernkampfangriff abwehren:</b>
+                        <br>- Angriff muss beobachtet werden
+                        <br>- nur Ausweichen oder Parade mit Schild möglich (nicht möglich, wenn in Nahkampf verwickelt)
+                        <br>- Ausweichen oder Schildparade: Probe +4/8 für ankommende Wurfwaffen/Pfeile, Bolzen, Kugeln o. Schleudersteine, zusätzlich um +2 erschwert, wenn aus Distanzklasse <i>sehr nah</i> abgeschossen
+                    </li>
+                    <li><b>Wiederverwertung von Geschossen und Wurfgeschossen:</b>
+                        <br>- Zum Auffinden <i>Sinnenschärfe</i>-Probe nötig (bis zu 20 erschwert, Meisterentscheid)
+                        <br>- Wurfbeile, -speere, messer und Diskusse sind bei 1-5 auf einem W6 noch intakt
+                        <br>- Armbrustbolzen bei 1-4 auf W6
+                        <br>- Pfeile bei 1-3 auf 1W6
+                        <br>- Muss das Projektil aus einem Opfer gezogen werden gilt: Wurfspeere/-beile bei 1-5, Wurfmesser und Diskusse bei 1-4, Armbrustbolzen bei 1-2 und Pfeile bei 1 auf W6 noch intakt
+                    </li>
+                </ul>
+                <br>
+                <table style="margin-left:auto; margin-right:auto">
+                    <tr>
+                      <th>Zweibeiner</th>
+                      <th>Normal</th>
+                      <th>Scharfschütze</th>
+                      <th>Meisterschütze</th>
+                      <th></th>
+                      <th>Vierbeiner</th>
+                      <th>Normal</th>
+                      <th>Scharfschütze</th>
+                      <th>Meisterschütze</th>
+                    </tr>
+                    <tr>
+                      <td>Kopf</td>
+                      <td>+10</td>
+                      <td>+7</td>
+                      <td>+5</td>
+                      <td></td>
+                      <td>Rumpf</td>
+                      <td>+4</td>
+                      <td>+3</td>
+                      <td>+2</td>
+                    </tr>
+                    <tr>
+                      <td>Brust</td>
+                      <td>+6</td>
+                      <td>+4</td>
+                      <td>+3</td>
+                      <td></td>
+                      <td>Bein</td>
+                      <td>+10</td>
+                      <td>+7</td>
+                      <td>+5</td>
+                    </tr>
+                    <tr>
+                        <td>Arme</td>
+                        <td>+10</td>
+                        <td>+7</td>
+                        <td>+5</td>
+                        <td></td>
+                        <td>verwundbare Stelle</td>
+                        <td>+12</td>
+                        <td>+8</td>
+                        <td>+6</td>
+                      </tr>
+                      <tr>
+                        <td>Bauch</td>
+                        <td>+6</td>
+                        <td>+4</td>
+                        <td>+3</td>
+                        <td></td>
+                        <td>Kopf</td>
+                        <td>+16</td>
+                        <td>+11</td>
+                        <td>+8</td>
+                      </tr>
+                      <tr>
+                        <td>Beine</td>
+                        <td>+8</td>
+                        <td>+5</td>
+                        <td>+4</td>
+                        <td></td>
+                        <td>Schwanz (nach Größe)</td>
+                        <td>+(8-16)</td>
+                        <td>+(5-11)</td>
+                        <td>+(4-8)</td>
+                      </tr>
+                      <tr>
+                        <td>Hand/Fuß</td>
+                        <td>+16</td>
+                        <td>+11</td>
+                        <td>+8</td>
+                        <td></td>
+                        <td>Sinnesorgane (mind.)</td>
+                        <td>+16</td>
+                        <td>+11</td>
+                        <td>+8</td>
+                      </tr>
+                      <tr>
+                        <td>Auge/Herz</td>
+                        <td>+20</td>
+                        <td>+13</td>
+                        <td>+10</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                  </table> 
+            </div>
         </div>
         <div class="container">
             <br>

@@ -128,11 +128,31 @@ li {
 
 /* Change background on mouse-over */
 .navbar a:hover {
-    background: #eee;
+    background: #D6EEEE;
     color: black;
 }
 
 /* Main content */
 .main {
-    margin-top: 60px; /* Add a top margin to avoid content overlay */
-} 
+    margin-top: 3%; /* Add a top margin to avoid content overlay */
+}
+
+table {
+    border: 0px;
+    border-collapse: collapse;
+}
+
+th, td {
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+tr {
+    border-bottom: 1px solid black;
+    border-style: dashed;
+}
+
+tr:hover {
+    background-color: #D6EEEE;
+}
