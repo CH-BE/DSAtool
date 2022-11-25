@@ -57,6 +57,10 @@ form select {
     display:table;
 }
 
+.main {
+    margin-top: 3%; /* Add a top margin to avoid content overlay */
+}
+
 .table-row {
     display:table-row;
 }
@@ -117,12 +121,10 @@ li {
 .navbar {
     overflow: hidden;
     background-color: slategray;
-    position: fixed; /* Set the navbar to fixed position */
-    top: 0; /* Position the navbar at the top of the page */
-    width: 100%; /* Full width */
+    position: fixed;
+    top: 0;
+    width: 100%;
     }
-
-/* Links inside the navbar */
 .navbar a {
     float: left;
     display: block;
@@ -131,18 +133,13 @@ li {
     padding: 14px 16px;
     text-decoration: none;
 }
-
-/* Change background on mouse-over */
 .navbar a:hover {
     background: #D6EEEE;
     color: black;
 }
 
-/* Main content */
-.main {
-    margin-top: 3%; /* Add a top margin to avoid content overlay */
-}
 
+/* Table Style */
 table {
     border: 0px;
     border-collapse: collapse;
