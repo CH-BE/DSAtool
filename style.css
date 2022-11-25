@@ -97,8 +97,14 @@ form select {
     font-size: 1.0em;
 }
 
-.maxbox:last-child { 
-    margin-right: 0;
+.infobox { 
+    float: left;
+    width: 100%;
+    padding: 10px;
+    background: #eeeeee;
+    box-sizing: border-box;
+    font-size: 0.75em;
+    text-align: right;
 }
 
 li {
