@@ -12,6 +12,9 @@ Kleines tool für DSA Sachen
 - Gezielte Schüsse und Trefferzonen
 
 ## To Do:
+### Liturgieproben
+- Erschwernisse und Erleichterungen
+
 ### Fernkampf Modifikatoren (WdS S.93 ff)
 - Nachtsicht: max. -5 Modifikator ergibt keinen Sinn?
 - Kampfgetümmel nicht implementiert
