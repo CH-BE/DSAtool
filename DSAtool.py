@@ -294,7 +294,7 @@ def fk_mod(size, distance, movement, sight1, sight2, sight3, protection="none",
 
     # Vor- und Nachteile
     if distanceView == "True":
-        fk_mod = -2
+        fk_mod += -2
     if oneEyed == "True" and dis < 10:
         fk_mod += 4
     if colorblind == "True" and dis > 50:

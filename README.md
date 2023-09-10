@@ -14,6 +14,8 @@ Kleines tool für DSA Sachen
 ## To Do:
 ### Liturgieproben
 - Erschwernisse und Erleichterungen
+- Dämonenbeschwörung Erschwernisse / Erleichterungen
+- Elementarismus Erschwernisse / Erleichterungen
 
 ### Fernkampf Modifikatoren (WdS S.93 ff)
 - Nachtsicht: max. -5 Modifikator ergibt keinen Sinn?
