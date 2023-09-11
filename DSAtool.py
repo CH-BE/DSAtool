@@ -2,8 +2,8 @@ import random
 
 
 def trefferzone(event):
-    """Roles a d20 and looks up the corresponding damage areas with effects of the
-    wounds."""
+    """Roles a d20 and looks up the corresponding damage areas with effects of 
+    the wounds."""
 
     d20 = random.randint(1, 20)
     output = "Wurf: %2d" % d20
@@ -50,22 +50,23 @@ def patzertabelle_fk(event):
 
     if patzer == 2:
         output += "Waffe zerstört!<br>"
-        output += """INI -4; alle verbleibenden Angriffs- und Abwehraktionen gehen diese
-        Kampfrunde verloren"""
+        output += """INI -4; alle verbleibenden Angriffs- und Abwehraktionen
+        gehen diese Kampfrunde verloren"""
     elif patzer == 3:
         output += "Waffe beschädigt!<br>"
-        output += """INI -3; min. 30 Aktionen nötig um Waffe wieder schussfähig zu machen
-        (e.g. Sehne wechseln oder Mechanik der Armbust entklemmen), bei
-        Wurfwaffe entspricht es Waffe zerstört; Schütze verliert alle
-        verbleibenden Angriffs- und Abwehraktionen in der Kampfrunde."""
+        output += """INI -3; min. 30 Aktionen nötig um Waffe wieder
+        schussfähig zu machen (e.g. Sehne wechseln oder Mechanik
+        der Armbust entklemmen), bei Wurfwaffe entspricht es Waffe zerstört;
+        Schütze verliert alle verbleibenden Angriffs- und Abwehraktionen in
+        der Kampfrunde."""
     elif patzer > 3 and patzer <= 10:
         output += "Fehlschuss!<br>"
         output += "INI -2; 2 Aktionen benötigt um wieder Schussbereit zu sein."
     elif patzer > 10:
         output += "Kameraden getroffen!<br>"
-        output += """INI -3; TP entsprechend Entfernung auswürfeln. Ansagen kommen nicht
-        zum tragen. Ist kein Gefährte in der Nähe, trifft sich der Schütze
-        selbst."""
+        output += """INI -3; TP entsprechend Entfernung auswürfeln. Ansagen
+        kommen nicht zum tragen. Ist kein Gefährte in der Nähe, trifft sich
+        der Schütze selbst."""
     pyscript.write("output3", output)
 
 
@@ -77,24 +78,26 @@ def patzertabelle_nk(event):
 
     if patzer == 2:
         output += "Waffe zerstört!<br>"
-        output += """INI -4; bei BF <= 0 wird die Waffe nicht zerstört und BF steigt
-        um eins; bei natürlichen Waffen gilt es als Eigentreffer"""
+        output += """INI -4; bei BF <= 0 wird die Waffe nicht zerstört und BF
+        steigt um eins; bei natürlichen Waffen gilt es als Eigentreffer"""
     elif patzer > 2 and patzer <= 5:
         output += "Sturz!<br>"
-        output += """INI -2; Zum Aufstehen Aktion Position und um BE erschwerte GE-
-        Probe nötig. Held mit Sonderfertigkeit Standfest oder Vorteil
-        (herausragender) Balance kann GE-Probe erschwert um BE werfen, um es
-        in ein Stolpern zu verwandeln."""
+        output += """INI -2; Zum Aufstehen Aktion Position und um BE
+        erschwerte GE-Probe nötig. Held mit Sonderfertigkeit Standfest
+        oder Vorteil (herausragender) Balance kann GE-Probe erschwert um
+        BE werfen, um es in ein Stolpern zu verwandeln."""
     elif patzer > 5 and patzer <= 8:
         output += "Stolpern!<br>"
         output += "INI -2"
     elif patzer > 8 and patzer <= 10:
         output += "Waffe verloren!<br>"
-        output += """INI -2; Aktion Position und GE-Probe nötig, um wieder an Waffe
-        zu gelangen. Im Fall von natürlichen Waffen als Sturz gewertet."""
+        output += """INI -2; Aktion Position und GE-Probe nötig, um wieder an
+        Waffe zu gelangen. Im Fall von natürlichen Waffen als Sturz 
+        gewertet."""
     elif patzer == 11:
         output += "An eigener Waffe verletzt!<br>"
-        output += """INI -3; Waffenschaden durch eigene Waffe. Keine zusätzlichen
+        output += """INI -3; Waffenschaden durch eigene Waffe. Keine
+        zusätzlichen
         TP durch KK-Bonus oder Ansagen"""
     elif patzer == 12:
         output += "Schwerer Eigentreffer!<br>"
@@ -215,15 +218,15 @@ def horse_mod(horseattack, horsesaddle, weapontype):
 
     horsemod = {
         "none": 0,
-        "stehend": 1,
-        "Schritt": 2,
-        "Galopp": 4,
+        "stehend": 2,
+        "Schritt": 4,
+        "Galopp": 8
     }
     attack_mod = horsemod[horseattack]
     if horseattack != "none" and horsesaddle == "False":
-        attack_mod += 2
+        attack_mod += 4
     if weapontype == "Wurf":
-        attack_mod = 2*attack_mod
+        attack_mod = 0.5*attack_mod
     return attack_mod
 
 
@@ -263,8 +266,8 @@ def fk_mod(size, distance, movement, sight1, sight2, sight3, protection="none",
     dis (int): Distance from target in [Schritt]
     """
 
-    shortsighted_output = ""  # Zusätzliche Ausgabe für den Fall, dass Nachteil kurzsichtig zum tragen kommt
-    fk_mod = 0  # Fernkampf Modifikator
+    fk_mod = 0
+    shortsighted_output = ""  # Zusätzliche Ausgabe [sight2]
     fk_mod += (size_mod(size) +
                distance_mod(distance) +
                protection_mod(protection) +
@@ -292,15 +295,16 @@ def fk_mod(size, distance, movement, sight1, sight2, sight3, protection="none",
     elif sidewind == "stark böig":
         fk_mod += 8
 
-    # Vor- und Nachteile
+    # Vor- und Nachteile[sight3]
     if distanceView == "True":
-        fk_mod -= 2
+        fk_mod += -2
     if oneEyed == "True" and dis < 10:
         fk_mod += 4
     if colorblind == "True" and dis > 50:
         fk_mod += 4
     if shortsighted == "True" and dis > 100:
-        shortsighted_output = " + Meisterentscheid für zusätzliche Aufschläge durch Nachteil Kurzsichtig!"
+        shortsighted_output = """ + Meisterentscheid für zusätzliche Aufschläge
+        durch Nachteil Kurzsichtig!"""
 
     # Schnellschuss
     if quickshot == "True":
@@ -365,7 +369,16 @@ def fk_html_to_py(*args, **kwargs):
                  range_SF,
                  horseattack,
                  horsesaddle,
-                 underwater,
-                 dis)
-    output = str(mod[0]) + mod[1]
+                 underwater,size, distance, movement, sight1, sight2, sight3, protection="none",
+           twilightVision="False", distanceView="False",
+           nightVision="False", oneEyed="False", colorblind="False",
+           shortsighted="False", nightblind="False", weapontype="Schuss",
+           steepshot="none", sidewind="none", quickshot="False",
+           range_SF="none", horseattack="none", horsesaddle="True",
+           underwater="False", dis=0)
     result.write(output)
+
+
+#returninf = fk_mod("klein", "nah", "unbeweglich", "Dunst", "Finsternis", "none", "none", "False", "False", "False", "False", "False", "False", "False", "Schuss", "none", "none", "False", "none", "none", "True", "False", 0)
+returninf = fk_mod("klein", "nah", "unbeweglich", "Dunst", "Finsternis", "none", "none", "True", "False", "False", "False", "False", "False", "False", "Schuss", "none", "none", "False", "none", "Galopp", "False", "False", 0)
+print(returninf)
