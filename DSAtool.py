@@ -377,7 +377,8 @@ def fk_html_to_py(*args, **kwargs):
            range_SF="none", horseattack="none", horsesaddle="True",
            underwater="False", dis=0)
     # result.write(output)
-    result.write(mod)
+    #result.write("output4", mod) # output in box
+    pyscript.write("output4", mod)
 
 
 #returninf = fk_mod("klein", "nah", "unbeweglich", "Dunst", "Finsternis", "none", "none", "False", "False", "False", "False", "False", "False", "False", "Schuss", "none", "none", "False", "none", "none", "True", "False", 0)
