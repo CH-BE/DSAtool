@@ -380,5 +380,4 @@ def fk_html_to_py(*args, **kwargs):
 
 
 #returninf = fk_mod("klein", "nah", "unbeweglich", "Dunst", "Finsternis", "none", "none", "False", "False", "False", "False", "False", "False", "False", "Schuss", "none", "none", "False", "none", "none", "True", "False", 0)
-returninf = fk_mod("klein", "nah", "unbeweglich", "Dunst", "Finsternis", "none", "none", "True", "False", "False", "False", "False", "False", "False", "Schuss", "none", "none", "False", "none", "Galopp", "False", "False", 0)
-print(returninf)
+# print(returninf)
