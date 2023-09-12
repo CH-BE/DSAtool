@@ -6,6 +6,11 @@ body {
     background-color: white;
 }
 
+hr {
+    width: 75%;
+    color: #eeeeee;
+}
+
 h1 {
     font-size: 1.5em;
   }
@@ -55,6 +60,7 @@ form select {
 
 .container {
     display:table;
+    width: 100%;
 }
 
 .main {
@@ -119,11 +125,11 @@ li {
 
   /* The navigation bar */
 .navbar {
+    width: 100%;
     overflow: hidden;
     background-color: slategray;
     position: fixed;
     top: 0;
-    width: 100%;
     }
 .navbar a {
     float: left;
@@ -152,8 +158,8 @@ th, td {
 }
 
 tr {
-    border-bottom: 1px solid black;
-    border-style: dashed;
+    border-bottom: 1px black;
+    border-bottom-style: dashed;
 }
 
 tr:hover {

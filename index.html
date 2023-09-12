@@ -4,9 +4,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>DSA Tool</title>
-    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
     <link rel="stylesheet" type="text/css" href="style.css" media="screen" />
-    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script> 
+    <!-- <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" /> -->
+    <!-- <script defer src="https://pyscript.net/alpha/pyscript.js"></script> -->
   </head>
   <body>
     <div class="navbar">
@@ -25,17 +27,17 @@
             <h1 id="Zufallsgeneratoren">Zufallsgeneratoren</h1>
             <br>
             <div class="bigbox">
-                <button id="submit" class="button button1" pys-onClick="trefferzone">Trefferzone</button>
+                <button id="submit" class="button button1" py-click="trefferzone()">Trefferzone</button>
                 <div id="output"></div>
                 <py-script src="./DSAtool.py"></py-script>
             </div>
             <div class="bigbox">
-                <button id="submit2" class="button button2" pys-onClick="patzertabelle_nk">Patzer Nahkampf</button>
+                <button id="submit2" class="button button2" py-click="patzertabelle_nk()">Patzer Nahkampf</button>
                 <div id="output2"></div>
                 <py-script src="./DSAtool.py"></py-script>
             </div>
             <div class="bigbox">
-                <button id="submit3" class="button button3" pys-onClick="patzertabelle_fk">Patzer Fernkampf</button>
+                <button id="submit3" class="button button3" py-click="patzertabelle_fk()">Patzer Fernkampf</button>
                 <div id="output3"></div>
                 <py-script src="./DSAtool.py"></py-script>
             </div>
@@ -51,9 +53,9 @@
             <h1 id="FKMod">Fernkampf Modifikatoren (WdS S. 93ff)</h1><br>
             <form onsubmit="return false">
                 <div class ="box2">
-                    <input class="button button4" pys-onClick="fk_html_to_py" type="submit" id="btn-form" value="FK-Mod berechnen">
+                    <input class="button button4" py-click="fk_html_to_py()" type="submit" id="btn-form" value="FK-Mod berechnen">
                     <py-script src="./DSAtool.py"></py-script>
-                    FK-Modifikator (Erschwernis > 0):
+                    <br>FK-Modifikator (Erschwernis > 0):
                     <b><div id="output4"></div></b>
                 </div>
                 <div class="box2">
@@ -595,8 +597,8 @@
         </div>
         <br>
         <div class="infobox">
-            Version: 1.1.1<br>
-            Last update: 10.09.2023
+            Version: 1.2<br>
+            Last update: 12.09.2023
         </div>
     </div>
   </body>

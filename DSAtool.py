@@ -1,7 +1,7 @@
 import random
 
 
-def trefferzone(event):
+def trefferzone():
     """Roles a d20 and looks up the corresponding damage areas with effects of 
     the wounds."""
 
@@ -10,100 +10,100 @@ def trefferzone(event):
 
     if d20 <= 6:
         if (d20 % 2 == 0):
-            output += "<br>Rechtes Bein!<br>"
+            output += "\nRechtes Bein!\n"
         else:
-            output += "<br>Linkes Bein!<br>"
-        output += "1. Wunde: AT, PA, GE, INI-Basis -2; GE -1<br>"
-        output += "2. Wunde: AT, PA, GE, INI-Basis -4; GE -2<br>"
+            output += "\nLinkes Bein!\n"
+        output += "1. Wunde: AT, PA, GE, INI-Basis -2; GE -1\n"
+        output += "2. Wunde: AT, PA, GE, INI-Basis -4; GE -2\n"
         output += "3. Wunde: Sturz, kampfunfähig"
     elif d20 > 6 and d20 <= 8:
-        output += "<br>Bauch!<br>"
-        output += "1. Wunde: AT, PA, KO, KK, GS, INI-Basis -1; +1W6 SP<br>"
-        output += "2. Wunde: AT, PA, KO, KK, GS, INI-Basis -2; +2W6 SP<br>"
+        output += "\nBauch!\n"
+        output += "1. Wunde: AT, PA, KO, KK, GS, INI-Basis -1; +1W6 SP\n"
+        output += "2. Wunde: AT, PA, KO, KK, GS, INI-Basis -2; +2W6 SP\n"
         output += "3. Wunde: Bewusstlos, Blutverlust"
     elif d20 > 8 and d20 <= 14:
         if d20 % 2 == 0:
-            output += "<br>Schwertarm!<br>"
+            output += "\nSchwertarm!\n"
         else:
-            output += "<br>Schildarm!<br>"
-        output += "1. Wunde: AT, PA, KK, FF, -2 mit diesem Arm<br>"
-        output += "2. Wunde: AT, PA, KK, FF, -4 mit diesem Arm<br>"
+            output += "\nSchildarm!\n"
+        output += "1. Wunde: AT, PA, KK, FF, -2 mit diesem Arm\n"
+        output += "2. Wunde: AT, PA, KK, FF, -4 mit diesem Arm\n"
         output += "3. Wunde: Arm handlungsunfähig"
     elif d20 > 14 and d20 <= 18:
-        output += "<br>Brust!<br>"
-        output += "1. Wunde: AT, PA, KO, KK -1; +1W6 SP<br>"
-        output += "2. Wunde: AT, PA, KO, KK -2; +2W6 SP<br>"
+        output += "\nBrust!\n"
+        output += "1. Wunde: AT, PA, KO, KK -1; +1W6 SP\n"
+        output += "2. Wunde: AT, PA, KO, KK -2; +2W6 SP\n"
         output += "3. Wunde: Bewusstlos, Blutverlust"
     elif d20 > 18:
-        output += "<br>Kopf!<br>"
-        output += "1. Wunde: MU, KL, IN, INI-Basis -2, INI - 2W6<br>"
-        output += "2. Wunde: MU, KL, IN, INI-Basis -4, INI - 4W6<br>"
+        output += "\nKopf!\n"
+        output += "1. Wunde: MU, KL, IN, INI-Basis -2, INI - 2W6\n"
+        output += "2. Wunde: MU, KL, IN, INI-Basis -4, INI - 4W6\n"
         output += "3. Wunde: +2W6 SP, bewusstlos, Blutverlust"
-    pyscript.write("output", output)
+    Element("output").element.innerText = output
 
 
-def patzertabelle_fk(event):
+def patzertabelle_fk():
     """Roles 2W6 and looks up the effects for failures in RANGED combat"""
 
     patzer = random.randint(1, 6) + random.randint(1, 6)
-    output = "Wurf: %2d<br>" % patzer
+    output = "Wurf: %2d\n" % patzer
 
     if patzer == 2:
-        output += "Waffe zerstört!<br>"
+        output += "Waffe zerstört!\n"
         output += """INI -4; alle verbleibenden Angriffs- und Abwehraktionen
         gehen diese Kampfrunde verloren"""
     elif patzer == 3:
-        output += "Waffe beschädigt!<br>"
+        output += "Waffe beschädigt!\n"
         output += """INI -3; min. 30 Aktionen nötig um Waffe wieder
         schussfähig zu machen (e.g. Sehne wechseln oder Mechanik
         der Armbust entklemmen), bei Wurfwaffe entspricht es Waffe zerstört;
         Schütze verliert alle verbleibenden Angriffs- und Abwehraktionen in
         der Kampfrunde."""
     elif patzer > 3 and patzer <= 10:
-        output += "Fehlschuss!<br>"
+        output += "Fehlschuss!\n"
         output += "INI -2; 2 Aktionen benötigt um wieder Schussbereit zu sein."
     elif patzer > 10:
-        output += "Kameraden getroffen!<br>"
+        output += "Kameraden getroffen!\n"
         output += """INI -3; TP entsprechend Entfernung auswürfeln. Ansagen
         kommen nicht zum tragen. Ist kein Gefährte in der Nähe, trifft sich
         der Schütze selbst."""
-    pyscript.write("output3", output)
+    Element("output3").element.innerText = output
 
 
-def patzertabelle_nk(event):
+def patzertabelle_nk():
     """Roles 2W6 and looks up the effect for failures in MELEE combat"""
 
     patzer = random.randint(1, 6) + random.randint(1, 6)
-    output = "Wurf: %2d<br>" % patzer
+    output = "Wurf: %2d\n" % patzer
 
     if patzer == 2:
-        output += "Waffe zerstört!<br>"
+        output += "Waffe zerstört!\n"
         output += """INI -4; bei BF <= 0 wird die Waffe nicht zerstört und BF
         steigt um eins; bei natürlichen Waffen gilt es als Eigentreffer"""
     elif patzer > 2 and patzer <= 5:
-        output += "Sturz!<br>"
+        output += "Sturz!\n"
         output += """INI -2; Zum Aufstehen Aktion Position und um BE
         erschwerte GE-Probe nötig. Held mit Sonderfertigkeit Standfest
         oder Vorteil (herausragender) Balance kann GE-Probe erschwert um
         BE werfen, um es in ein Stolpern zu verwandeln."""
     elif patzer > 5 and patzer <= 8:
-        output += "Stolpern!<br>"
+        output += "Stolpern!\n"
         output += "INI -2"
     elif patzer > 8 and patzer <= 10:
-        output += "Waffe verloren!<br>"
+        output += "Waffe verloren!\n"
         output += """INI -2; Aktion Position und GE-Probe nötig, um wieder an
         Waffe zu gelangen. Im Fall von natürlichen Waffen als Sturz 
         gewertet."""
     elif patzer == 11:
-        output += "An eigener Waffe verletzt!<br>"
+        output += "An eigener Waffe verletzt!\n"
         output += """INI -3; Waffenschaden durch eigene Waffe. Keine
         zusätzlichen
         TP durch KK-Bonus oder Ansagen"""
     elif patzer == 12:
-        output += "Schwerer Eigentreffer!<br>"
+        output += "Schwerer Eigentreffer!\n"
         output += """INI -4; doppelter Waffenschaden. Keine zusätzlichen TP durch
         KK-Bonus oder Ansagen"""
-    pyscript.write("output2", output)
+    Element("output2").element.innerText = output
 
 
 def size_mod(size_str):
@@ -318,7 +318,9 @@ def fk_mod(size, distance, movement, sight1, sight2, sight3, protection="none",
     if underwater == "True":
         fk_mod += 5  # 3 von unter Wasser, 2 durch geringere Zielgröße
 
-    return fk_mod, shortsighted_output
+    output = str(fk_mod) + shortsighted_output
+
+    return output
 
 
 def fk_html_to_py(*args, **kwargs):
@@ -347,8 +349,7 @@ def fk_html_to_py(*args, **kwargs):
     underwater = f"{Element('underwater').value}"
     dis = f"{Element('dis').value}"
     dis = int(dis)
-    print(dis)
-    mod = fk_mod(size,
+    mod_final = fk_mod(size,
                  distance,
                  movement,
                  sight1,
@@ -369,18 +370,6 @@ def fk_html_to_py(*args, **kwargs):
                  range_SF,
                  horseattack,
                  horsesaddle,
-                 underwater,size, distance, movement, sight1, sight2, sight3, protection="none",
-           twilightVision="False", distanceView="False",
-           nightVision="False", oneEyed="False", colorblind="False",
-           shortsighted="False", nightblind="False", weapontype="Schuss",
-           steepshot="none", sidewind="none", quickshot="False",
-           range_SF="none", horseattack="none", horsesaddle="True",
-           underwater="False", dis=0)
-    result.write(output)
-    #result.write("output4", mod) # output in box
-    # pyscript.write("output4", mod)
-    # result.write(mod)
-
-
-#returninf = fk_mod("klein", "nah", "unbeweglich", "Dunst", "Finsternis", "none", "none", "False", "False", "False", "False", "False", "False", "False", "Schuss", "none", "none", "False", "none", "none", "True", "False", 0)
-# print(returninf)
+                 underwater,
+                 dis)
+    pyscript.write("output4", mod_final)
