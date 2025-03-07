@@ -5,12 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>DSA Tool</title>
     <link rel="stylesheet" type="text/css" href="style.css" media="screen" />
-    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
-    <script defer src="https://pyscript.net/latest/pyscript.js"></script> 
-    <!-- <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" /> -->
-    <!-- <script defer src="https://pyscript.net/alpha/pyscript.js"></script> -->
+    <!-- Including PyScript links-->
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+
   </head>
   <body>
+    <!-- Define Pyscript python file location -->
+    <section class="pyscript">
+      <script type="py" src="./DSAtool.py" config="./pyscript.toml"></script>
+    </section>
+    <!-- <script type="py" src="./DSAtool.py"></script> -->
+    <!-- somehow it does not work if the config="pyscript.json" is included?!-->
+
+    <!-- Start content -->
     <div class="navbar">
         <nav>
             <a href="#Zufallsgeneratoren">Zufallsgeneratoren</a>
@@ -27,19 +35,16 @@
             <h1 id="Zufallsgeneratoren">Zufallsgeneratoren</h1>
             <br>
             <div class="bigbox">
-                <button id="submit" class="button button1" py-click="trefferzone()">Trefferzone</button>
+                <button id="submit" class="button button1" py-click="trefferzone">Trefferzone</button>
                 <div id="output"></div>
-                <py-script src="./DSAtool.py"></py-script>
             </div>
             <div class="bigbox">
-                <button id="submit2" class="button button2" py-click="patzertabelle_nk()">Patzer Nahkampf</button>
+                <button id="submit2" class="button button2" py-click="patzertabelle_nk">Patzer Nahkampf</button>
                 <div id="output2"></div>
-                <py-script src="./DSAtool.py"></py-script>
             </div>
             <div class="bigbox">
-                <button id="submit3" class="button button3" py-click="patzertabelle_fk()">Patzer Fernkampf</button>
+                <button id="submit3" class="button button3" py-click="patzertabelle_fk">Patzer Fernkampf</button>
                 <div id="output3"></div>
-                <py-script src="./DSAtool.py"></py-script>
             </div>
         </div>
         <div class="container">
@@ -53,8 +58,7 @@
             <h1 id="FKMod">Fernkampf Modifikatoren (WdS S. 93ff)</h1><br>
             <form onsubmit="return false">
                 <div class ="box2">
-                    <input class="button button4" py-click="fk_html_to_py()" type="submit" id="btn-form" value="FK-Mod berechnen">
-                    <py-script src="./DSAtool.py"></py-script>
+                    <input class="button button4" py-click="fk_html_to_py" type="submit" id="btn-form" value="FK-Mod berechnen">
                     <br>FK-Modifikator (Erschwernis > 0):
                     <b><div id="output4"></div></b>
                 </div>
@@ -597,8 +601,8 @@
         </div>
         <br>
         <div class="infobox">
-            Version: 1.2<br>
-            Last update: 12.09.2023
+            Version: 1.3<br>
+            Last update: 07.03.2025
         </div>
     </div>
   </body>
