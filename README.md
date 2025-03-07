@@ -13,7 +13,6 @@ Kleines tool für DSA Sachen
 
 ## To Do:
 ### Liturgieproben
-- Erschwernisse und Erleichterungen
 - Dämonenbeschwörung Erschwernisse / Erleichterungen
 - Elementarismus Erschwernisse / Erleichterungen
 

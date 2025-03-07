@@ -4,239 +4,606 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>DSA Tool</title>
-    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
-    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
-    <style>
-        .html {
-          scroll-behavior: smooth;
-        }
-        .body {
-          background-color: #CCCCCC;
-        }
-        .h1 {
-          font-size:24px;
-        }
-        .button {
-          border:none;
-          color: white;
-          padding: 15px 32px;
-          text-align: center;
-          text-decoration: none;
-          display: inline-block;
-          font-size: 16px;
-          margin: 4px 2px;
-          cursor: pointer;
-        }
-        
-        .button1 {background-color: #4CAF50;} /* Green */
-        .button2 {background-color: #008CBA;} /* Blue */
-        .button3 {background-color: crimson;}
-        .button4 {background-color: darkorange;}
-        .output4 {
-          background-color: grey;
-          scroll-margin-block-start: 550px;
-          scroll-margin-block-end: 550px;
-        }
-        table {
-          width: 100%;
-          border-collapse: collapse;
-        }
-        </style>
-  </head>
-  <body class="body">
-    <h1 class="h1">Zufallsgeneratoren</h1>
-    <button id="submit" class="button button1" pys-onClick="trefferzone">Trefferzone</button>
-    <div id="output"></div>
-    <py-script src="./DSAtool.py"></py-script>
-    <button id="submit2" class="button button2" pys-onClick="patzertabelle_nk">Patzer Nahkampf</button>
-    <div id="output2"></div>
-    <py-script src="./DSAtool.py"></py-script>
-    <button id="submit3" class="button button3" pys-onClick="patzertabelle_fk">Patzer Fernkampf</button>
-    <div id="output3"></div>
-    <py-script src="./DSAtool.py"></py-script>
-    <br><br>
-    <hr>
-    <br>
-    <br>
-    <h1 class="h1">Fernkampf Modifikatoren</h1><br>
-    <table>
-      <form onsubmit="return false">
-        <tr>
-          <td><label for="size">Zielgröße:</label></td>
-          <td><select name="size" id="size">
-            <option value="kleiner als winzig">kleiner als winzig</option>
-            <option value="winzig">winzig</option>
-            <option value="sehr klein">sehr klein</option>
-            <option value="klein">klein</option>
-            <option value="mittel">mittel</option>
-            <option value="groß">groß</option>
-            <option value="sehr groß">sehr groß</option>
-            <option value="größer als sehr groß">größer als sehr groß</option>
-          </select></td>
-        </tr>
-        <tr>
-          <td><label for="distance">Entfernung:</label></td>
-          <td><select name="distance" id="distance">
-            <option value="sehr nah">sehr nah</option>
-            <option value="nah">nah</option>
-            <option value="mittel">mittel</option>
-            <option value="weit">weit</option>
-            <option value="extrem weit">extrem weit</option>
-          </select></td>
-        </tr>
-        <tr>
-          <td><label for="movement">Bewegung:</label></td>
-          <td><select name="movement" id="movement">
-            <option value="unbeweglich">unbeweglich</option>
-            <option value="stillstehend">stillstehend</option>
-            <option value="leichte Bewegung">leicht</option>
-            <option value="schnelle Bewegung">schnell</option>
-            <option value="sehr schnelle Bewegung">sehr schnell</option>
-          </select></td>
-        </tr>
-        <tr>
-          <td><label for="sight1">Sichtverhältnisse 1:</label></td>
-          <td><select name="sight1" id="sight1">
-            <option value="none">kein Nebel/Dunst</option>
-            <option value="Dunst">Dunst</option>
-            <option value="Nebel">Nebel</option>
-          </select></td>
-          <td><label for="sight2">Sichtverhältnisse 2:</label></td>
-          <td><select name="sight2" id="sight2">
-            <option value="none">keine Dunkelheit</option>
-            <option value="Dämmerung">Dämmerung</option>
-            <option value="Mondlicht">Mondlicht</option>
-            <option value="Sternenlicht">Sternenlicht</option>
-            <option value="Finsternis">Finster</option>
-          </select></td>
-          <td><label for="sight3">Sichtverhältnisse 3:</label></td>
-          <td><select name="sight3" id="sight3">
-            <option value="none">Sichtbares Ziel</option>
-            <option value="Unsichtbares Ziel">Unsichtbares Ziel</option>
-          </select></td>
-        </tr>
-        <tr>
-          <td><label for="protection">Deckung:</label></td>
-          <td><select name="protection" id="protection">
-            <option value="none">keine</option>
-            <option value="halb">1/2-Deckung (z.B. große Schilde)</option>
-            <option value="dreiviertel">3/4-Deckung (z.B. sehr große Schilde)</option>
-          </select></td>
-        </tr>
-        <tr>
-          <td><label for="twilightVision">Dämmerungssicht:</label></td>
-          <td><select name="twilightVision" id="twilightVision">
-            <option value="False">Nein</option>
-            <option value="True">Ja</option>
-          </select></td>
-          <td><label for="distanceView">Entfernungssicht:</label></td>
-          <td><select name="distanceView" id="distanceView">
-            <option value="False">Nein</option>
-            <option value="True">Ja</option>
-          </select></td>
-          <td><label for="nightVision">Nachtsicht:</label></td>
-          <td><select name="nightVision" id="nightVision">
-            <option value="False">Nein</option>
-            <option value="True">Ja</option>
-          </select></td>
-        </tr>
-        <tr>
-          <td><label for="oneEyed">Einäugig:</label></td>
-          <td><select name="oneEyed" id="oneEyed">
-            <option value="False">Nein</option>
-            <option value="True">Ja</option>
-          </select></td>
-          <td><label for="colorblind">Farbenblind:</label></td>
-          <td><select name="colorblind" id="colorblind">
-            <option value="False">Nein</option>
-            <option value="True">Ja</option>
-          </select></td>
-          <td><label for="shortsighted">Kurzsichtig:</label></td>
-          <td><select name="shortsighted" id="shortsighted">
-            <option value="False">Nein</option>
-            <option value="True">Ja</option>
-          </select></td>
-          <td><label for="nightblind">Nachtblind:</label></td>
-          <td><select name="nightblind" id="nightblind">
-            <option value="False">Nein</option>
-            <option value="True">Ja</option>
-          </select></td>
-        <tr>
-          <td><label for="weapontype">Waffenart:</label></td>
-          <td><select name="weapontype" id="weapontype">
-            <option value="Schuss">Schusswaffe</option>
-            <option value="Wurf">Wurfwaffe</option>
-          </select></td>
-        </tr>
-        <tr>
-          <td><label for="steepshot">Steilschuss:</label></td>
-          <td><select name="steepshot" id="steepshot">
-            <option value="none">Nein</option>
-            <option value="up">nach oben</option>
-            <option value="down">nach unten</option>
-          </select></td>
-        </tr>
-        <tr>
-          <td><label for="sidewind">Seitenwind:</label></td>
-          <td><select name="sidewind" id="sidewind">
-            <option value="none">Nein</option>
-            <option value="böig">böig</option>
-            <option value="stark böig">stark böig</option>
-          </select></td>
-        </tr>
-        <tr>
-          <td><label for="quickshot">Schnellschuss:</label></td>
-          <td><select name="quickshot" id="quickshot">
-            <option value="False">Nein</option>
-            <option value="True">Ja</option>
-          </select></td>
-        </tr>
-        <tr>
-          <td><label for="range_SF">FK Sonderfertigkeiten:</label></td>
-          <td><select name="range_SF" id="range_SF">
-            <option value="none">keine</option>
-            <option value="Scharfschütze">Scharfschütze</option>
-            <option value="Meisterschütze">Meisterschütze</option>
-          </select></td>
-        </tr>
-        <tr>
-          <td><label for="horseattack">Angriff vom Pferderücken:</label></td>
-          <td><select name="horseattack" id="horseattack">
-            <option value="none">Nein</option>
-            <option value="stehend">stehendes Pferd</option>
-            <option value="Schritt">Bewegung in Schritt</option>
-            <option value="Galopp">Bewegung im Galopp</option>
-          </select></td>
-          <td><label for="horsesaddle">Sattel und Steigbügel:</label></td>
-          <td><select name="horsesaddle" id="horsesaddle">
-            <option value="True">Ja</option>
-            <option value="False">Nein</option>
-          </select></td>
-        </tr>
-        <tr>
-          <td><label for="underwater">Schuss/Wurf unter Wasser:</label></td>
-          <td><select name="underwater" id="underwater">
-            <option value="False">Nein</option>
-            <option value="True">Ja</option>
-          </select></td>
-        </tr>
-        <tr>
-          <td><label for="dis">Entfernung zum Ziel (Schritt):</label></td>
-          <td><input type="text" id="dis" name="dis" value="0 Schritt"><br></td>
-        </tr>
-        <tr>
-          <td><br></td>
-        </tr>
-        <tr>
-          <td><b>FK-Modifikator (> 0 ist Erschwernis):</b></td>
-          <td><b><div id="output4"></div></td>
-        </tr>
-        <tr>
-          <td><input class="button button4" pys-onClick="fk_html_to_py" type="submit" id="btn-form" value="FK Modifikator berechnen">
-            <py-script src="./DSAtool.py"></py-script></td>
-        </tr>
-      </form>
-    </table>
+    <link rel="stylesheet" type="text/css" href="style.css" media="screen" />
+    <!-- Including PyScript links-->
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
 
+  </head>
+  <body>
+    <!-- Define Pyscript python file location -->
+    <section class="pyscript">
+      <script type="py" src="./DSAtool.py" config="./pyscript.toml"></script>
+    </section>
+    <!-- <script type="py" src="./DSAtool.py"></script> -->
+    <!-- somehow it does not work if the config="pyscript.json" is included?!-->
+
+    <!-- Start content -->
+    <div class="navbar">
+        <nav>
+            <a href="#Zufallsgeneratoren">Zufallsgeneratoren</a>
+            <a href="#FKMod">FK-Modifikation</a>
+            <a href="#gezielterSchuss">Gezielte Schüsse & Trefferzonen</a>
+            <a href="#Wundheilung">Wundheilung & HK-Wunden</a>
+            <a href="#Wundfieber">Wundfieber</a>
+            <a href="#Heilkraeuter">Heilkräuter & -tränke</a>
+            <a href="#LiturgieMirakelprobe">Liturgie- & Mirakelproben</a>
+        </nav>
+    </div>
+    <div class="main">
+        <div class="container">
+            <h1 id="Zufallsgeneratoren">Zufallsgeneratoren</h1>
+            <br>
+            <div class="bigbox">
+                <button id="submit" class="button button1" py-click="trefferzone">Trefferzone</button>
+                <div id="output"></div>
+            </div>
+            <div class="bigbox">
+                <button id="submit2" class="button button2" py-click="patzertabelle_nk">Patzer Nahkampf</button>
+                <div id="output2"></div>
+            </div>
+            <div class="bigbox">
+                <button id="submit3" class="button button3" py-click="patzertabelle_fk">Patzer Fernkampf</button>
+                <div id="output3"></div>
+            </div>
+        </div>
+        <div class="container">
+            <br>
+            <br>
+            <hr>
+            <br>
+            <br>
+        </div>
+        <div class="container">
+            <h1 id="FKMod">Fernkampf Modifikatoren (WdS S. 93ff)</h1><br>
+            <form onsubmit="return false">
+                <div class ="box2">
+                    <input class="button button4" py-click="fk_html_to_py" type="submit" id="btn-form" value="FK-Mod berechnen">
+                    <br>FK-Modifikator (Erschwernis > 0):
+                    <b><div id="output4"></div></b>
+                </div>
+                <div class="box2">
+                    <label>Zielgröße:</label>
+                    <select name="size" id="size">
+                        <option value="kleiner als winzig">kleiner als winzig</option>
+                        <option value="winzig">winzig (z.B. Münze, Drachenauge, Maus, Kröte)</option>
+                        <option value="sehr klein">sehr klein (z.B. Schlange, Fasan, Katze, Rabe</option>
+                        <option value="klein">klein (z.B. Wolf, Reh, Schaf)</option>
+                        <option value="mittel">mittel (z.B. Mensch, Ork, Elf, Goblin, Zwerg)</option>
+                        <option value="groß">groß (z.B. Pferd, Steppenrind, Oger, Troll)</option>
+                        <option value="sehr groß">sehr groß (z.B. Scheunentor, Drache, Elefant, Riese)</option>
+                        <option value="größer als sehr groß">größer als sehr groß</option>
+                    </select>
+                    <label>Entfernung:</label>
+                    <select name="distance" id="distance">
+                        <option value="sehr nah">sehr nah</option>
+                        <option value="nah">nah</option>
+                        <option value="mittel">mittel</option>
+                        <option value="weit">weit</option>
+                        <option value="extrem weit">extrem weit</option>
+                    </select>
+                    <label for="movement">Bewegung:</label>
+                    <select name="movement" id="movement">
+                        <option value="unbeweglich">unbeweglich</option>
+                        <option value="stillstehend">stillstehend</option>
+                        <option value="leichte Bewegung">leicht</option>
+                        <option value="schnelle Bewegung">schnell</option>
+                        <option value="sehr schnelle Bewegung">sehr schnell</option>
+                    </select>
+                    <label for="protection">Deckung:</label>
+                    <select name="protection" id="protection" width="40px !important">
+                        <option value="none">keine</option>
+                        <option value="halb">1/2-Deckung (z.B. große Schilde)</option>
+                        <option value="dreiviertel">3/4-Deckung (z.B. sehr große Schilde)</option>
+                    </select>
+                    <label for="dis">Entfernung zum Ziel (Schritt):</label>
+                    <input type="number" id="dis" name="dis" value="0"><br>
+                </div>
+                <div class="box2">
+                    <label for="sight1">Sichtverhältnisse 1:</label>
+                    <select name="sight1" id="sight1">
+                        <option value="none">kein Nebel/Dunst</option>
+                        <option value="Dunst">Dunst</option>
+                        <option value="Nebel">Nebel</option>
+                    </select>
+                    <label for="sight2">Sichtverhältnisse 2:</label>
+                    <select name="sight2" id="sight2">
+                        <option value="none">keine Dunkelheit</option>
+                        <option value="Dämmerung">Dämmerung</option>
+                        <option value="Mondlicht">Mondlicht</option>
+                        <option value="Sternenlicht">Sternenlicht</option>
+                        <option value="Finsternis">Finster</option>
+                    </select>
+                    <label for="sight3">Sichtverhältnisse 3:</label>
+                    <select name="sight3" id="sight3">
+                        <option value="none">Sichtbares Ziel</option>
+                        <option value="Unsichtbares Ziel">Unsichtbares Ziel</option>
+                    </select>
+                </div>
+                <div class="box2">
+                    <label for="range_SF">FK Sonderfertigkeiten:</label>
+                    <select name="range_SF" id="range_SF">
+                        <option value="none">keine</option>
+                        <option value="Scharfschütze">Scharfschütze</option>
+                        <option value="Meisterschütze">Meisterschütze</option>
+                    </select>
+                    <label for="twilightVision">Dämmerungssicht:</label>
+                    <select name="twilightVision" id="twilightVision">
+                        <option value="False">Nein</option>
+                        <option value="True">Ja</option>
+                    </select>
+                    <label for="distanceView">Entfernungssicht:</label>
+                    <select name="distanceView" id="distanceView">
+                        <option value="False">Nein</option>
+                        <option value="True">Ja</option>
+                    </select>
+                    <label for="nightVision">Nachtsicht:</label>
+                    <select name="nightVision" id="nightVision">
+                        <option value="False">Nein</option>
+                        <option value="True">Ja</option>
+                    </select>
+                    <label for="oneEyed">Einäugig:</label>
+                    <select name="oneEyed" id="oneEyed">
+                        <option value="False">Nein</option>
+                        <option value="True">Ja</option>
+                    </select>
+                    <label for="colorblind">Farbenblind:</label>
+                    <select name="colorblind" id="colorblind">
+                        <option value="False">Nein</option>
+                        <option value="True">Ja</option>
+                    </select>
+                    <label for="shortsighted">Kurzsichtig:</label>
+                    <select name="shortsighted" id="shortsighted">
+                        <option value="False">Nein</option>
+                        <option value="True">Ja</option>
+                    </select>
+                    <label for="nightblind">Nachtblind:</label>
+                    <select name="nightblind" id="nightblind">
+                        <option value="False">Nein</option>
+                        <option value="True">Ja</option>
+                    </select>
+                </div>
+                <div class="box2">
+                    <label for="weapontype">Waffenart:</label>
+                    <select name="weapontype" id="weapontype">
+                        <option value="Schuss">Schusswaffe</option>
+                        <option value="Wurf">Wurfwaffe</option>
+                    </select>
+                    <label for="steepshot">Steilschuss:</label>
+                    <select name="steepshot" id="steepshot">
+                        <option value="none">Nein</option>
+                        <option value="up">nach oben</option>
+                        <option value="down">nach unten</option>
+                    </select>
+                    <label for="sidewind">Seitenwind:</label>
+                    <select name="sidewind" id="sidewind">
+                        <option value="none">Nein</option>
+                        <option value="böig">böig</option>
+                        <option value="stark böig">stark böig</option>
+                    </select>
+                    <label for="quickshot">Schnellschuss:</label>
+                    <select name="quickshot" id="quickshot">
+                        <option value="False">Nein</option>
+                        <option value="True">Ja</option>
+                    </select>
+                    <label for="horseattack">Angriff vom Pferderücken:</label>
+                    <select name="horseattack" id="horseattack">
+                        <option value="none">Nein</option>
+                        <option value="stehend">stehendes Pferd</option>
+                        <option value="Schritt">Bewegung in Schritt</option>
+                        <option value="Galopp">Bewegung im Galopp</option>
+                    </select>
+                    <label for="horsesaddle">Sattel und Steigbügel:</label>
+                    <select name="horsesaddle" id="horsesaddle">
+                        <option value="True">Ja</option>
+                        <option value="False">Nein</option>
+                    </select>
+                    <label for="underwater">Schuss/Wurf unter Wasser:</label>
+                    <select name="underwater" id="underwater">
+                        <option value="False">Nein</option>
+                        <option value="True">Ja</option>
+                    </select>
+                </div>
+            </form>
+        </div>
+        <div class="container">
+            <br>
+            <br>
+            <hr>
+            <br>
+            <br>
+        </div>
+        <div class="container">
+            <h1 id="gezielterSchuss">Gezielte Schüsse & Trefferzonen</h1>
+            <br>
+            <div class="maxbox">
+                <ul>
+                    <li><b>Zielen</b> (normal/Scharf- oder Meisterschütze): -1 pro 2 Aktionen / -1 pro Aktion (max. -4) </li>
+                    <li><b>Fernkampangriff mit Ansage:</b>
+                        <br>- nicht mit gezieltem Schuss auf eine Trefferzone kombinierbar
+                        <br>- normal: max. TaW Ansage, + Ansage/2 auf Schaden, + Ansage/2 Aktionen nötig
+                        <br>- Scharfschütze: max. TaW Ansage, + Ansage auf Schaden, + 2 Aktionen nötig
+                        <br>- Meisterschütze: max. Fernkampfwert Ansage, + Ansage auf Schaden, + 1 Aktion nötig
+                    </li>
+                    <li><b>Fernkampfangriff abwehren:</b>
+                        <br>- Angriff muss beobachtet werden
+                        <br>- nur Ausweichen oder Parade mit Schild möglich (nicht möglich, wenn in Nahkampf verwickelt)
+                        <br>- Ausweichen oder Schildparade: Probe +4/8 für ankommende Wurfwaffen/Pfeile, Bolzen, Kugeln o. Schleudersteine, zusätzlich um +2 erschwert, wenn aus Distanzklasse <i>sehr nah</i> abgeschossen
+                    </li>
+                    <li><b>Wiederverwertung von Geschossen und Wurfgeschossen:</b>
+                        <br>- Zum Auffinden <i>Sinnenschärfe</i>-Probe nötig (bis zu 20 erschwert, Meisterentscheid)
+                        <br>- Wurfbeile, -speere, messer und Diskusse sind bei 1-5 auf einem W6 noch intakt
+                        <br>- Armbrustbolzen bei 1-4 auf W6
+                        <br>- Pfeile bei 1-3 auf 1W6
+                        <br>- Muss das Projektil aus einem Opfer gezogen werden gilt: Wurfspeere/-beile bei 1-5, Wurfmesser und Diskusse bei 1-4, Armbrustbolzen bei 1-2 und Pfeile bei 1 auf W6 noch intakt
+                    </li>
+                </ul>
+                <br>
+                <table style="margin-left:auto; margin-right:auto">
+                    <tr>
+                      <th>Zweibeiner</th>
+                      <th>Normal</th>
+                      <th>Scharfschütze</th>
+                      <th>Meisterschütze</th>
+                      <th></th>
+                      <th>Vierbeiner</th>
+                      <th>Normal</th>
+                      <th>Scharfschütze</th>
+                      <th>Meisterschütze</th>
+                    </tr>
+                    <tr>
+                      <td>Kopf</td>
+                      <td>+10</td>
+                      <td>+7</td>
+                      <td>+5</td>
+                      <td></td>
+                      <td>Rumpf</td>
+                      <td>+4</td>
+                      <td>+3</td>
+                      <td>+2</td>
+                    </tr>
+                    <tr>
+                      <td>Brust</td>
+                      <td>+6</td>
+                      <td>+4</td>
+                      <td>+3</td>
+                      <td></td>
+                      <td>Bein</td>
+                      <td>+10</td>
+                      <td>+7</td>
+                      <td>+5</td>
+                    </tr>
+                    <tr>
+                        <td>Arme</td>
+                        <td>+10</td>
+                        <td>+7</td>
+                        <td>+5</td>
+                        <td></td>
+                        <td>verwundbare Stelle</td>
+                        <td>+12</td>
+                        <td>+8</td>
+                        <td>+6</td>
+                      </tr>
+                      <tr>
+                        <td>Bauch</td>
+                        <td>+6</td>
+                        <td>+4</td>
+                        <td>+3</td>
+                        <td></td>
+                        <td>Kopf</td>
+                        <td>+16</td>
+                        <td>+11</td>
+                        <td>+8</td>
+                      </tr>
+                      <tr>
+                        <td>Beine</td>
+                        <td>+8</td>
+                        <td>+5</td>
+                        <td>+4</td>
+                        <td></td>
+                        <td>Schwanz (nach Größe)</td>
+                        <td>+(8-16)</td>
+                        <td>+(5-11)</td>
+                        <td>+(4-8)</td>
+                      </tr>
+                      <tr>
+                        <td>Hand/Fuß</td>
+                        <td>+16</td>
+                        <td>+11</td>
+                        <td>+8</td>
+                        <td></td>
+                        <td>Sinnesorgane (mind.)</td>
+                        <td>+16</td>
+                        <td>+11</td>
+                        <td>+8</td>
+                      </tr>
+                      <tr>
+                        <td>Auge/Herz</td>
+                        <td>+20</td>
+                        <td>+13</td>
+                        <td>+10</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                  </table> 
+            </div>
+        </div>
+        <div class="container">
+            <br>
+            <br>
+            <hr>
+            <br>
+            <br>
+        </div>
+        <div class="container">
+            <h1 id="Wundheilung">Wundheilung & Heilkunde Wunden (WdS S. 37)</h1><br>
+            <div class="bigbox">
+                <h2>Wunden schließen</h2>
+                <ul>
+                    <li><b>unbehandelte Wunden:</b><br>KO-Probe erschwert um 3x Anzahl der Wunden (1x täglich möglich)</li>
+                    <li><b>nach erfolgreicher HK-Wunden Probe:</b><br>- pro 3 TaP* ist die KO-Probe um je 1 erleichtert<br>- je 7 TaP* schließen eine Probe sofort<br>- je 7 zurückgewonnene LeP durch einen magischen Heiltrank schließen eine Wunde sofort</li>
+                </ul>
+            </div>
+            <div class="bigbox">
+                <h2>Sofortige HK-Wunden</h2>
+                <ul>
+                    <li>Erstversorgung erschwert um 2 je nicht verheilter Wunde</li>
+                    <li><b>Erste Hilfe:</b><br>- Lebensbedrohliche Verletzung (LeP <= 0)<br>- HK-Wunden Probe um doppelte Anzahl der LeP unter 0 erschwert<br>- Dauer: (2xLeP unter 0) - TaP* KR, mindestens 2 KR<br>- gelungene Probe: LeP zurück auf 1<br>- misslungene Probe: Patient erhält 1W6 SP</li>
+                    <li><b>Heilung fördern:</b><br>1. Probe:<br>- Allgemeine Versorgung der Verletzung (Dauer 4 SR)<br>- misslungene Probe: KO-Probe für Wundfieber ist um 3 erschwert<br>2. Probe<br>- Förderung der Heilung. Zu Regeneration: TaP*/2 LeP<br>- je 7 TaP* schließen eine Wunde sofort, je 2 TaP* darüber hinaus ist nächtliche KO-Probe zum schließen der Wunde um 1 erleichtert</li>
+                </ul>
+            </div>
+            <div class="bigbox">
+                <h2>Nachbehandlung HK-Wunden</h2>
+                <ul>
+                    <li><b>Probe an Folgetagen:</b><br>- max. 1 Nachbehandlungsprobe pro Tag<br>- pro nicht verheilter Wunde, Probe erschwert um 3<br>- 1 LeP zur Regeneration je 3 TaP*<br>- je 3 TaP* KO-Probe um 1 erleichtert<br>- misslungene Probe: Regeneration für 24h ausgesetzt. 1W6 SP zusätzlich<br>- misslungene Probe: Patient erhält 1W6 SP<br>- Dauer: 6 SR</li>
+                </ul>
+            </div>
+        </div>
+        <div class="container">
+            <br>
+            <br>
+            <hr>
+            <br>
+            <br>
+        </div>
+        <div class="container">
+            <h1 id="Wundfieber">Wundfieber (WdS S. 157f)</h1><br>
+            <div class="maxbox">
+                <ul>
+                    <li>Prüfung auf Wundfieber bei 5 oder mehr SP an einem Tag: modifizierte KO-Probe am Abend nötig</li>
+                    <li><b>Modifikatoren:</b><br>+ 1 bei über 25% LeP Verlust<br>+2 bei über 50% LeP Verlust<br>+3, wenn durch Krallen, Zähne oder verschmutzte Waffen entstanden<br>+4, wenn durch Untoten entstanden<br>-7 bei Vorteil Resistenz gegen Krankheiten<br>-15 bei Immunität gegen Krankheiten<br>+7 bei Krankheitsanfällig</li>
+                    <li>Erleichterung der KO-Probe je nach HK-Wunden Probe</li>
+                    <li><b>Auswirkungen:</b><br>- Dauer: W6 Tage<br>- 2W6 SP gleichmäßig verteilt über die Dauer<br>- KL - W3<br>- KK - W3<br>- Eigenschaften regenerieren sich um 1 je Tag<br>- Regeneration reduziert um -2 (auch bei 2 Regenerationsphasen) </li>
+                </ul>
+            </div>
+        </div>
+        <div class="container">
+            <br>
+            <br>
+            <hr>
+            <br>
+            <br>
+        </div>
+        <div class="container">
+            <h1 id="Heilkraeuter">Heilkräuter & -tränke</h1><br>
+            <div class="bigbox">
+                <h2>Heilkräuter (WdS S. 160)</h2>
+                <ul>
+                    <li><b>rote Pfeilblüte:</b><br>- Vorkommen: südaventurischer Dschungel und Sümpfe<br>- Identifizierung: Pflanzenkunde + 7<br>- Kosten: 10D pro Aufguss<br>- Wirkung: 3W6+2 LeP über 3 Stunden</li>
+                    <li><b>Tarnele:</b><br>- Vorkommen: Wiesen, Wald und Sumpf in Mittel- und Nordaventurien<br>- Identifizierung: Pflanzenkunde + 4<br>- Kosten: 2S pro Portion Salbe<br>- Wirkung: +1 LeP zu nächtlicher Regeneration</li>
+                    <li><b>Vierblättrige Einbeere:</b><br>- Vorkommen: Wald und Waldränder nördlich des Yaquir<br>- Identifizierung: Pflanzenkunde + 5<br>- Kosten: 4S pro Beere bzw. 15 D für eine Flasche Einbeerentrank mit 40 + 2W6 LeP<br>- Wirkung: gibt 1W3 LeP pro Stunde zurück, im Rahmen einer HK Wunden Probe 1W6 pro Stunde</li>
+                    <li><b>Frisches Wirselkraut:</b><br>- Vorkommen: Steppen in ganz Aventurien<br>- Identifizierung: Pflanzenkunde + 5<br>- Kosten: 5D für eine Portion Salbe<br>- Wirkung: 5 LeP über Tag, wenn auf frische Wunde aufgetragen. Anwendung Salbe: 1W6+4 LeP</li>
+                </ul>
+            </div>
+            <div class="bigbox">
+                <h2>Heiltränke (WdA S. 56)</h2>
+                <ul>
+                    <li><b>Qualität:</b><br>- A: 1W6 LeP und leichte Sinnestrübung (KL-1, GE-1 für 1 Stunde)<br>- B: 1W6+2 LeP<br>- C: 2W6+4 LeP<br>- D: 3W6+6 LeP<br>- E: Alle LeP zurück<br>- F: 3W6 + 25 LeP, auch über Grundwert, neutralisiert aber die Wirkung aller anderen alchimistisch-magischen Tränke, Gifte und Elixiere für eine Woche</li>
+                    <li><b>Preis:</b><br>- unbestätige Qualität: ab 10 D<br>- bestätigte Qualität: bis zu 2 D pro LeP</li>
+                    <li><b>Haltbarkeit:</b><br>1W6 + 20 Monde</li>
+                </ul>
+            </div>
+            <div class="bigbox">
+                <h2>Astraltränke (WdA S. 74)</h2>
+                <ul>
+                    <li><b>Qualität:</b><br>- A: 1W6 AsP und leichte Geistesverwirrung (KL-2 für 1 Stunde)<br>- B: 2W6 AsP, muss jedoch innerhalb der nächsten Stunde verbraucht werden, sonst drohen schwere Kopfschmerzen (KL, IN, GE, FF je -4 für 7 Stunden)<br>- C: 3W6 AsP<br>- D: 3W6+6 AsP, auch über Maximum hinaus, allerdings gehen überschüssige AsP von den LeP verloren<br>- E: wie D, jedoch mit 5W6+6 AsP<br>- F: 2W20 + 5 AsP, auch über Grundwert, ohne LeP Abzug</li>
+                    <li><b>Preis:</b><br>- unbestätige Qualität: mindestens 60 D<br>- bestätigte Qualität: bis zu 10 D pro AsP</li>
+                    <li><b>Haltbarkeit:</b><br>2W6 + 30 Monde</li>
+                </ul>
+            </div>
+        </div>
+        <div class="container">
+            <br>
+            <br>
+            <hr>
+            <br>
+            <br>
+        </div>
+        <div class="container">
+            <h1 id="LiturgieMirakelprobe">Liturgie- & Mirakelproben</h1>
+            <br>
+            <ul>
+                <li><b>(*)</b> nur halbe Anrechnung auf Mirakel</li>
+                <li><b>(**)</b> nur bei Liturgien</li>
+            </ul>
+            <div class="maxbox">
+                <table style="margin-left:auto; margin-right:auto">
+                    <tr>
+                      <th>Motivation & Seelenlage (*)</th>
+                      <th>Mod.</th>
+                      <th>Ort</th>
+                      <th>Mod.</th>
+                      <th>Zeit (*)</th>
+                      <th>Mod.</th>
+                      <th>Umstände (**)</th>
+                      <th>Mod.</th>
+                    </tr>
+                    <tr>
+                      <td>Notlage</td>
+                      <td>-3</td>
+                      <td>Geweihter Boden eines anderen Zwölfgottes</td>
+                      <td>-1</td>
+                      <td>Monat des Zwölfgottes</td>
+                      <td>-1</td>
+                      <td>Harmonie mit Weltgefüge</td>
+                      <td>-2 bis +7</td>
+                    </tr>
+                    <tr>
+                      <td>Erfüllung göttlichen/kirchlichen Auftrags</td>
+                      <td>bis -7</td>
+                      <td>Kappelle/Schrein der Gottheit (einfach geweiht)</td>
+                      <td>-2</td>
+                      <td>Feiertag der Gottheit</td>
+                      <td>-3</td>
+                      <td>Ziel ist Eidbrecher/Frevler</td>
+                      <td>+2 / +5</td>
+                    </tr>
+                    <tr>
+                        <td>eigensüchtige Motive</td>
+                        <td>bis +7</td>
+                        <td>Tempel der Gottheit (zweifach geweiht)</td>
+                        <td>-3</td>
+                        <td>Namenlose Tage</td>
+                        <td>+7</td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>magische Beherrschung/Beeinflussung</td>
+                        <td>+12</td>
+                        <td>heiliger Ort der Gottheit</td>
+                        <td>-4</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>frisch konvertierter Geweihter</td>
+                        <td>+3</td>
+                        <td>tief im Territorium beliebiger Ungläubiger/Zweifler</td>
+                        <td>+3</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>Geweihter ist Frevler/Eidbrecher</td>
+                        <td>+3 / +7</td>
+                        <td>Gegenwart vieler Ungläubiger/Zweifler</td>
+                        <td>+3</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td></td>
+                        <td></td>
+                        <td>andere Welt/Globule/Limbus</td>
+                        <td>min. +7</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td></td>
+                        <td></td>
+                        <td>dämonisch verzerrtes Territorium</td>
+                        <td>min. +7</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                    </table>
+                    <br>
+                    <table style="margin-left:auto; margin-right:auto">
+                      <tr>
+                      <th>gewünschte Wirkung</th>
+                      <th>Mod.</th>
+                      <th>Abstand zu letzter Regeneration</th>
+                      <th>Mod.</th>
+                      <th>Gemeinsam gewirkte Liturgien</th>
+                      <th>Mod.</th>
+                      </tr>
+                      <tr>
+                        <td>Mirakel erwünscht/neutral/missbilligt</td>
+                        <td>0/+6/+18</td>
+                        <td>ein Tag</td>
+                        <td>+12</td>
+                        <td>1-6 Mitbeter</td>
+                        <td>-1</td>
+                      </tr>
+                      <tr>
+                        <td>Liturgie nach Grad 0/I/II/III/IV/V</td>
+                        <td>-2/0/2/4/6/8/10</td>
+                        <td>zwei Tage</td>
+                        <td>+8</td>
+                        <td>7-12 Mitbeter</td>
+                        <td>-2</td>
+                      </tr>
+                      <tr>
+                        <td>"aufgestufte" Liturgie</td>
+                        <td>+2 pro Veränderung</td>
+                        <td>eine Woche</td>
+                        <td>+4</td>
+                        <td>13-59 Mitbeter</td>
+                        <td>-3</td>
+                      </tr>
+                      <tr>
+                        <td></td>
+                        <td></td>
+                        <td>>1 Monat</td>
+                        <td>+/- 0</td>
+                        <td>60+ Mitbeter</td>
+                        <td>-5</td>
+                      </tr>
+                      <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>einzelne Probe der jeweiligen mitbetenden Geweihten</td>
+                        <td>+3</td>
+                      </tr>
+                      <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>einzelne Probe der jeweiligen mitbetenden Akoluthen</td>
+                        <td>+/- 0</td>
+                      </tr>
+                      <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>je 3 LkP* eines mitbetenden Geweihten</td>
+                        <td>1 Bonus auf LkP*</td>
+                      </tr>
+                      <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>je 5 LkP* eines mitbetenden Akoluthen</td>
+                        <td>1 Bonus auf LkP*</td>
+                      </tr>
+                  </table> 
+            </div>
+        </div>
+        <br>
+        <div class="infobox">
+            Version: 1.3<br>
+            Last update: 07.03.2025
+        </div>
+    </div>
   </body>
 </html>
