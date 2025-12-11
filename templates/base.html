@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="de" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DSA Tool</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script defer src="/static/script.js"></script>
+  </head>
+  <header class="navbar">
+  <div class="nav-inner">
+    <a href="#top" class="logo">DSA Tool</a>
+    <nav class="nav-links">
+      <a href="#generators">Generatoren</a>
+      <a href="#dice">Würfel</a>
+      <a href="#ranged-modifier">Fernkampf</a>
+      <a href="#gezielte-schuesse">Gezielte Schüsse</a>
+      <a href="#wundheilung">Wundheilung</a>
+      <a href="#wundfieber">Wundfieber</a>
+      <a href="#heiltraenke">Tränke</a>
+      <a href="#liturgien">Liturgien</a>
+    </nav>
+  </div>
+</header>
+
+  <body>
+    <header class="topbar">
+      <h1>DSA Tool</h1>
+      <nav>
+        <button id="theme-toggle">🌞 / 🌙</button>
+      </nav>
+    </header>
+    <main id="top" class="container">
+      {% block content %}{% endblock %}
+    </main>
+    <footer class="foot">© 2025 DSA Tool — Version 2.0 - Last Update: 10.12.2025</footer>
+  </body>
+</html>

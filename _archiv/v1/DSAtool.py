@@ -1,7 +1,12 @@
 import random
+from pyscript import display
+from pyweb import pydom
 
 
-def trefferzone():
+test = "DURG"
+pydom["div#output"].html = test
+
+def trefferzone(event):
     """Roles a d20 and looks up the corresponding damage areas with effects of 
     the wounds."""
 
@@ -39,10 +44,10 @@ def trefferzone():
         output += "1. Wunde: MU, KL, IN, INI-Basis -2, INI - 2W6\n"
         output += "2. Wunde: MU, KL, IN, INI-Basis -4, INI - 4W6\n"
         output += "3. Wunde: +2W6 SP, bewusstlos, Blutverlust"
-    Element("output").element.innerText = output
+    display(output, target="output", append=False)
 
 
-def patzertabelle_fk():
+def patzertabelle_fk(event):
     """Roles 2W6 and looks up the effects for failures in RANGED combat"""
 
     patzer = random.randint(1, 6) + random.randint(1, 6)
@@ -67,10 +72,10 @@ def patzertabelle_fk():
         output += """INI -3; TP entsprechend Entfernung auswürfeln. Ansagen
         kommen nicht zum tragen. Ist kein Gefährte in der Nähe, trifft sich
         der Schütze selbst."""
-    Element("output3").element.innerText = output
+    display(output, target="output3", append=False)
 
 
-def patzertabelle_nk():
+def patzertabelle_nk(event):
     """Roles 2W6 and looks up the effect for failures in MELEE combat"""
 
     patzer = random.randint(1, 6) + random.randint(1, 6)
@@ -103,7 +108,7 @@ def patzertabelle_nk():
         output += "Schwerer Eigentreffer!\n"
         output += """INI -4; doppelter Waffenschaden. Keine zusätzlichen TP durch
         KK-Bonus oder Ansagen"""
-    Element("output2").element.innerText = output
+    display(output, target="output2", append=False)
 
 
 def size_mod(size_str):
@@ -322,9 +327,8 @@ def fk_mod(size, distance, movement, sight1, sight2, sight3, protection="none",
 
     return output
 
-
+'''
 def fk_html_to_py(*args, **kwargs):
-    result = Element('output4')
     size = f"{Element('size').value}"
     distance = f"{Element('distance').value}"
     movement = f"{Element('movement').value}"
@@ -372,4 +376,8 @@ def fk_html_to_py(*args, **kwargs):
                  horsesaddle,
                  underwater,
                  dis)
-    pyscript.write("output4", mod_final)
+    pyscript.write("output4", mod_final)'
+'''
+
+def fk_html_to_py(event):
+    display("DURG!", target="output4", append=False)

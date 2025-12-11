@@ -1,0 +1,528 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section id="generators" class="generators">
+  <h2>Zufallsgeneratoren</h2>
+  <div class="grid">
+    <a class="card card-blue" href="/generator/trefferzone">Trefferzone</a>
+    <a class="card card-red" href="/generator/patzer_nah">Patzer (Nahkampf)</a>
+    <a class="card card-yellow" href="/generator/patzer_fern">Patzer (Fernkampf)</a>
+  </div>
+
+  {% if result %}
+  <div class="result-card">
+    {{ result|safe }}
+  </div>
+  {% endif %}
+</section>
+
+<section id="dice" class="dice-section">
+  <h2>🎲 Würfel</h2>
+  <form method="post" action="/roll" class="diceform">
+    <div class="dice-input-group">
+      <input
+        name="expr"
+        id="expr"
+        placeholder="z. B. 2W6+3"
+        autocomplete="off"
+      />
+      <button type="submit" class="roll-btn">Würfeln</button>
+    </div>
+
+    <div class="quick-buttons">
+      <button type="button" onclick="quickRoll('1W20')">1W20</button>
+      <button type="button" onclick="quickRoll('3W20')">3W20</button>
+      <button type="button" onclick="quickRoll('1W6')">1W6</button>
+      <button type="button" onclick="quickRoll('2W6')">2W6</button>
+    </div>
+  </form>
+
+  {% if dice_result %}
+  <div class="result-dice">
+    {{ dice_result|safe }}
+  </div>
+  {% endif %}
+</section>
+
+<section id="ranged-modifier" class="ranged-modifier">
+  <h2>Fernkampf-Modifikator (WdS S.93ff)</h2>
+  <form id="fkForm" class="fk-form">
+    <div class="fk-grid">
+      <label>Zielgröße
+        <select id="zielgroesse">
+          <option value="10">kleiner als winzig (+10)</option>
+          <option value="8">winzig (+8)</option>
+          <option value="6">sehr klein (+6)</option>
+          <option value="4">klein (+4)</option>
+          <option value="2">mittel (+2)</option>
+          <option value="0">groß (+0)</option>
+          <option value="-2">sehr groß (-2)</option>
+          <option value="-4">größer als sehr groß (-4)</option>
+        </select>
+      </label>
+
+      <label>Entfernung
+        <select id="entfernung">
+          <option value="-2">sehr nah (-2)</option>
+          <option value="0">nah (+0)</option>
+          <option value="4">mittel (+4)</option>
+          <option value="8">weit (+8)</option>
+          <option value="12">extrem weit (+12)</option>
+        </select>
+      </label>
+
+      <label>Bewegung
+        <select id="bewegung">
+          <option value="-4">fest montiertes Ziel (-4)</option>
+          <option value="-2">stillstehendes Ziel (-2)</option>
+          <option value="0">leichte Bewegung (+0)</option>
+          <option value="2">schnelle Bewegung (+2)</option>
+          <option value="4">Kampfgetümmel (+4)</option>
+        </select>
+      </label>
+
+      <label>Deckung
+        <select id="deckung">
+          <option value="0">keine (+0)</option>
+          <option value="2">halbe Deckung (+2)</option>
+          <option value="4">dreiviertel Deckung (+4)</option>
+        </select>
+      </label>
+
+      <label>Nebel
+        <select id="nebel">
+          <option value="0">kein Nebel/Dunst (+0)</option>
+          <option value="2">Dunst (+2)</option>
+          <option value="4">Nebel (+4)</option>
+        </select>
+      </label>
+
+      <label>Dunkelheit
+        <select id="dunkelheit">
+          <option value="0">keine (+0)</option>
+          <option value="2">Dämmerung (+2)</option>
+          <option value="4">Mondlicht (+4)</option>
+          <option value="6">Sternenlicht (+6)</option>
+          <option value="8">Finsternis (+8)</option>
+        </select>
+      </label>
+
+      <label>Sichtbares Ziel
+        <select id="sichtbar">
+          <option value="0">ja (+0)</option>
+          <option value="8">nein (+8)</option>
+        </select>
+      </label>
+
+      <label>Schnellschuss
+        <select id="schnellschuss">
+          <option value="0">nein (+0)</option>
+          <option value="2">ja ohne SF (+2)</option>
+          <option value="1">mit SF Scharfschütze (+1)</option>
+          <option value="0">mit SF Meisterschütze (+0)</option>
+        </select>
+      </label>
+
+      <label>Dämmerungssicht
+        <select id="daemmerungssicht">
+          <option value="0">nein (+0)</option>
+          <option value="half_darkness">ja (Dunkelheit halbiert)</option>
+        </select>
+      </label>
+
+      <label>Entfernungssinn
+        <select id="entfernungssinn">
+          <option value="0">nein (+0)</option>
+          <option value="-2">ja (-2)</option>
+        </select>
+      </label>
+
+      <label>Nachtsicht
+        <select id="nachtsicht">
+          <option value="0">nein (+0)</option>
+          <option value="night_darkness">ja (Dunkelheit halbiert, max +5)</option>
+        </select>
+      </label>
+
+      <label>Nachtblind
+        <select id="nachtblind">
+          <option value="0">nein (+0)</option>
+          <option value="double_darkness">ja (Dunkelheit verdoppelt, max +8)</option>
+        </select>
+      </label>
+
+      <label>Steilschuss / -wurf
+        <select id="steilschuss">
+          <option value="0">nein (+0)</option>
+          <option value="2">Schuss/Wurf nach unten (+2)</option>
+          <option value="4">Schuss nach oben (+4)</option>
+          <option value="8">Wurf nach oben (+8)</option>
+        </select>
+      </label>
+
+      <label>Seitenwind
+        <select id="seitenwind">
+          <option value="0">nein (+0)</option>
+          <option value="4">böiger Seitenwind (+4)</option>
+          <option value="8">starker Seitenwind (+8)</option>
+        </select>
+      </label>
+    </div>
+  </form>
+
+  <div id="fkResult" class="result-dice">Gesamt-Modifikator: +0</div>
+</section>
+
+<!-- Gezielte Schüsse und Trefferzonen Übersicht -->
+<section id="gezielte-schuesse" class="section-card">
+  <h2>Gezielte Schüsse & Trefferzonen</h2>
+
+  <div class="content-block">
+    <h3>Zielen</h3>
+    <ul>
+        <li>Normal / Scharfschütze oder Meisterschütze: –1 pro 2 Aktionen / –1 pro Aktion (max. –4)</li>
+    </ul>
+
+    <h3>Fernkampfangriff mit Ansage</h3>
+    <ul>
+      <li>nicht mit gezieltem Schuss auf eine Trefferzone kombinierbar</li>
+      <li>normal: max. TaW-Ansage, + Ansage/2 auf Schaden, + Ansage/2 Aktionen nötig</li>
+      <li>Scharfschütze: max. TaW-Ansage, + Ansage auf Schaden, + 2 Aktionen nötig</li>
+      <li>Meisterschütze: max. Fernkampfwert-Ansage, + Ansage auf Schaden, + 1 Aktion nötig</li>
+    </ul>
+
+    <h3>Fernkampfangriff abwehren</h3>
+    <ul>
+      <li>Angriff muss beobachtet werden</li>
+      <li>nur Ausweichen oder Parade mit Schild möglich (nicht möglich, wenn in Nahkampf verwickelt)</li>
+      <li>Ausweichen oder Schildparade: Probe +4 / +8 für ankommende Wurfwaffen, Pfeile, Bolzen, Kugeln oder Schleudersteine</li>
+      <li>zusätzlich +2 erschwert, wenn aus Distanzklasse „sehr nah“ abgeschossen</li>
+    </ul>
+
+    <h3>Wiederverwertung von Geschossen und Wurfgeschossen</h3>
+    <ul>
+      <li>Sinnenschärfe-Probe nötig (bis +20 Erschwernis, Meisterentscheid)</li>
+      <li>Wurfbeile, -speere, -messer, Diskusse: 1–5 auf 1W6 noch intakt</li>
+      <li>Armbrustbolzen: 1–4 auf 1W6  |  Pfeile: 1–3 auf 1W6</li>
+      <li>Wenn Projektil aus Opfer gezogen werden muss. Wurf auf W6, bei folgenden Ergebnissen noch intakt: Bei Wurfspeere / -beile: 1–5, Wurfmesser / Diskus: 1–4, Armbrustbolzen 1–2 und Pfeile 1.</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <div class="table-wrapper">
+    <table class="target-table">
+      <thead>
+        <tr>
+          <th>Zweibeiner</th><th>Normal</th><th>Scharfschütze</th><th>Meisterschütze</th>
+          <th>Vierbeiner</th><th>Normal</th><th>Scharfschütze</th><th>Meisterschütze</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Kopf</td><td>+10</td><td>+7</td><td>+5</td><td>Rumpf</td><td>+4</td><td>+3</td><td>+2</td></tr>
+        <tr><td>Brust</td><td>+6</td><td>+4</td><td>+3</td><td>Bein</td><td>+10</td><td>+7</td><td>+5</td></tr>
+        <tr><td>Arme</td><td>+10</td><td>+7</td><td>+5</td><td>verwundbare Stelle</td><td>+12</td><td>+8</td><td>+6</td></tr>
+        <tr><td>Bauch</td><td>+6</td><td>+4</td><td>+3</td><td>Kopf</td><td>+16</td><td>+11</td><td>+8</td></tr>
+        <tr><td>Beine</td><td>+8</td><td>+5</td><td>+4</td><td>Schwanz (nach Größe)</td><td>+(8–16)</td><td>+(5–11)</td><td>+(4–8)</td></tr>
+        <tr><td>Hand/Fuß</td><td>+16</td><td>+11</td><td>+8</td><td>Sinnesorgane (mind.)</td><td>+16</td><td>+11</td><td>+8</td></tr>
+        <tr><td>Auge/Herz</td><td>+20</td><td>+13</td><td>+10</td><td colspan="4"></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="wundheilung" class="section-card">
+  <h2>Wundheilung & HK-Wunden (WdS S. 37)</h2>
+  <div class="content-block">
+    <h3>Wunden schließen</h3>
+    <ul>
+      <li><b>unbehandelte Wunden:</b> KO-Probe erschwert um 3x Anzahl der Wunden (1x täglich möglich)</li>
+      <li><b>nach erfolgreicher HK-Wunden Probe:<br>- pro 3 TaP* ist die KO-Probe um je 1 erleichtert<br>- je 7 TaP* schließen eine Probe sofort<br>- je 7 zurückgewonnene LeP durch einen magischen Heiltrank schließen eine Wunde sofort</b></li>
+    </ul>
+    <h3>Sofortige HK-Wunden</h3>
+    <ul>
+      <li>Erstversorgung erschwert um 2 je nicht verheilter Wunde</li>
+      <li><b>Erste Hilfe:</b><br>- Lebensbedrohliche Verletzung (LeP <= 0)<br>- HK-Wunden Probe um doppelte Anzahl der LeP unter 0 erschwert<br>- Dauer: (2xLeP unter 0) - TaP* KR, mindestens 2 KR<br>- gelungene Probe: LeP zurück auf 1<br>- misslungene Probe: Patient erhält 1W6 SP</li>
+      <li><b>Heilung fördern:</b><br>1. Probe:<br>- Allgemeine Versorgung der Verletzung (Dauer 4 SR)<br>- misslungene Probe: KO-Probe für Wundfieber ist um 3 erschwert<br>2. Probe<br>- Förderung der Heilung. Zu Regeneration: TaP*/2 LeP<br>- je 7 TaP* schließen eine Wunde sofort, je 2 TaP* darüber hinaus ist nächtliche KO-Probe zum schließen der Wunde um 1 erleichtert</li>
+    </ul>
+    <h3>Nachbehandlung HK-Wunden</h3>
+    <ul>
+      <li><b>Probe an Folgetagen:</b><br>- max. 1 Nachbehandlungsprobe pro Tag<br>- pro nicht verheilter Wunde, Probe erschwert um 3<br>- 1 LeP zur Regeneration je 3 TaP*<br>- je 3 TaP* KO-Probe um 1 erleichtert<br>- misslungene Probe: Regeneration für 24h ausgesetzt. 1W6 SP zusätzlich<br>- misslungene Probe: Patient erhält 1W6 SP<br>- Dauer: 6 SR</li>
+    </ul>
+  </div>
+</section>
+
+<section id="wundfieber" class="section-card">
+  <h2>Wundfieber (WdS S. 157f)</h2>
+  <div class="content-block">
+    <ul>
+      <li>Prüfung auf Wundfieber bei 5 oder mehr SP an einem Tag: modifizierte KO-Probe am Abend nötig</li>
+      <li><b>Modifikatoren:</b><br>+ 1 bei über 25% LeP Verlust<br>+2 bei über 50% LeP Verlust<br>+3, wenn durch Krallen, Zähne oder verschmutzte Waffen entstanden<br>+4, wenn durch Untoten entstanden<br>-7 bei Vorteil Resistenz gegen Krankheiten<br>-15 bei Immunität gegen Krankheiten<br>+7 bei Krankheitsanfällig</li>
+      <li>Erleichterung der KO-Probe je nach HK-Wunden Probe</li>
+      <li><b>Auswirkungen:</b><br>- Dauer: W6 Tage<br>- 2W6 SP gleichmäßig verteilt über die Dauer<br>- KL - W3<br>- KK - W3<br>- Eigenschaften regenerieren sich um 1 je Tag<br>- Regeneration reduziert um -2 (auch bei 2 Regenerationsphasen) </li>
+    </ul>
+  </div>
+</section>
+
+<section id="heiltraenke" class="section-card">
+  <h2>Heilkräuter & -tränke</h2>
+  <div class="content-block">
+    <h3>Heilkräuter (WdS S. 160)</h3>
+    <ul>
+      <li><b>rote Pfeilblüte:</b><br>- Vorkommen: südaventurischer Dschungel und Sümpfe<br>- Identifizierung: Pflanzenkunde + 7<br>- Kosten: 10D pro Aufguss<br>- Wirkung: 3W6+2 LeP über 3 Stunden</li>
+      <li><b>Tarnele:</b><br>- Vorkommen: Wiesen, Wald und Sumpf in Mittel- und Nordaventurien<br>- Identifizierung: Pflanzenkunde + 4<br>- Kosten: 2S pro Portion Salbe<br>- Wirkung: +1 LeP zu nächtlicher Regeneration</li>
+      <li><b>Vierblättrige Einbeere:</b><br>- Vorkommen: Wald und Waldränder nördlich des Yaquir<br>- Identifizierung: Pflanzenkunde + 5<br>- Kosten: 4S pro Beere bzw. 15 D für eine Flasche Einbeerentrank mit 40 + 2W6 LeP<br>- Wirkung: gibt 1W3 LeP pro Stunde zurück, im Rahmen einer HK Wunden Probe 1W6 pro Stunde</li>
+      <li><b>Frisches Wirselkraut:</b><br>- Vorkommen: Steppen in ganz Aventurien<br>- Identifizierung: Pflanzenkunde + 5<br>- Kosten: 5D für eine Portion Salbe<br>- Wirkung: 5 LeP über Tag, wenn auf frische Wunde aufgetragen. Anwendung Salbe: 1W6+4 LeP</li>
+    </ul>
+    <h3>Heiltränke (WdA S. 56)</h3>
+    <ul>
+      <li><b>Qualität:</b><br>- A: 1W6 LeP und leichte Sinnestrübung (KL-1, GE-1 für 1 Stunde)<br>- B: 1W6+2 LeP<br>- C: 2W6+4 LeP<br>- D: 3W6+6 LeP<br>- E: Alle LeP zurück<br>- F: 3W6 + 25 LeP, auch über Grundwert, neutralisiert aber die Wirkung aller anderen alchimistisch-magischen Tränke, Gifte und Elixiere für eine Woche</li>
+      <li><b>Preis:</b><br>- unbestätige Qualität: ab 10 D<br>- bestätigte Qualität: bis zu 2 D pro LeP</li>
+      <li><b>Haltbarkeit:</b><br>1W6 + 20 Monde</li>
+    </ul>
+    <h3>Astraltränke (WdA S. 74)</h3>
+    <ul>
+      <li><b>Qualität:</b><br>- A: 1W6 AsP und leichte Geistesverwirrung (KL-2 für 1 Stunde)<br>- B: 2W6 AsP, muss jedoch innerhalb der nächsten Stunde verbraucht werden, sonst drohen schwere Kopfschmerzen (KL, IN, GE, FF je -4 für 7 Stunden)<br>- C: 3W6 AsP<br>- D: 3W6+6 AsP, auch über Maximum hinaus, allerdings gehen überschüssige AsP von den LeP verloren<br>- E: wie D, jedoch mit 5W6+6 AsP<br>- F: 2W20 + 5 AsP, auch über Grundwert, ohne LeP Abzug</li>
+      <li><b>Preis:</b><br>- unbestätige Qualität: mindestens 60 D<br>- bestätigte Qualität: bis zu 10 D pro AsP</li>
+      <li><b>Haltbarkeit:</b><br>2W6 + 30 Monde</li>
+    </ul>
+  </div>
+</section>
+
+<section id="liturgien" class="section-card">
+  <h2>Liturgien und Mirakel</h2>
+  <div class="content-block">
+    <ul>
+      <li><b>(*)</b> nur halbe Anrechnung auf Mirakel</li>
+      <li><b>(**)</b> nur bei Liturgien</li>
+    </ul>
+    <table class="target-table" style="margin-left:auto; margin-right:auto">
+      <thead>
+        <tr>
+          <th>Motivation & Seelenlage (*)</th>
+          <th>Mod.</th>
+          <th>Ort</th>
+          <th>Mod.</th>
+          <th>Zeit (*)</th>
+          <th>Mod.</th>
+          <th>Umstände (**)</th>
+          <th>Mod.</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Notlage</td>
+          <td>-3</td>
+          <td>Geweihter Boden eines anderen Zwölfgottes</td>
+          <td>-1</td>
+          <td>Monat des Zwölfgottes</td>
+          <td>-1</td>
+          <td>Harmonie mit Weltgefüge</td>
+          <td>-2 bis +7</td>
+        </tr>
+        <tr>
+          <td>Erfüllung göttlichen/kirchlichen Auftrags</td>
+          <td>bis -7</td>
+          <td>Kappelle/Schrein der Gottheit (einfach geweiht)</td>
+          <td>-2</td>
+          <td>Feiertag der Gottheit</td>
+          <td>-3</td>
+          <td>Ziel ist Eidbrecher/Frevler</td>
+          <td>+2 / +5</td>
+         </tr>
+         <tr>
+          <td>eigensüchtige Motive</td>
+          <td>bis +7</td>
+          <td>Tempel der Gottheit (zweifach geweiht)</td>
+          <td>-3</td>
+          <td>Namenlose Tage</td>
+          <td>+7</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>magische Beherrschung/Beeinflussung</td>
+          <td>+12</td>
+          <td>heiliger Ort der Gottheit</td>
+          <td>-4</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>frisch konvertierter Geweihter</td>
+          <td>+3</td>
+          <td>tief im Territorium beliebiger Ungläubiger/Zweifler</td>
+          <td>+3</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Geweihter ist Frevler/Eidbrecher</td>
+          <td>+3 / +7</td>
+          <td>Gegenwart vieler Ungläubiger/Zweifler</td>
+          <td>+3</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td>andere Welt/Globule/Limbus</td>
+          <td>min. +7</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td>dämonisch verzerrtes Territorium</td>
+          <td>min. +7</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+    <table class="target-table" style="margin-left:auto; margin-right:auto">
+      <thead>
+        <tr>
+          <th>gewünschte Wirkung</th>
+          <th>Mod.</th>
+          <th>Abstand zu letzter Regeneration</th>
+          <th>Mod.</th>
+          <th>Gemeinsam gewirkte Liturgien</th>
+          <th>Mod.</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Mirakel erwünscht/neutral/missbilligt</td>
+          <td>0/+6/+18</td>
+          <td>ein Tag</td>
+          <td>+12</td>
+          <td>1-6 Mitbeter</td>
+          <td>-1</td>
+        </tr>
+        <tr>
+          <td>Liturgie nach Grad 0/I/II/III/IV/V</td>
+          <td>-2/0/2/4/6/8/10</td>
+          <td>zwei Tage</td>
+          <td>+8</td>
+          <td>7-12 Mitbeter</td>
+          <td>-2</td>
+        </tr>
+        <tr>
+          <td>"aufgestufte" Liturgie</td>
+          <td>+2 pro Veränderung</td>
+          <td>eine Woche</td>
+          <td>+4</td>
+          <td>13-59 Mitbeter</td>
+          <td>-3</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td>>1 Monat</td>
+          <td>+/- 0</td>
+          <td>60+ Mitbeter</td>
+          <td>-5</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>einzelne Probe der jeweiligen mitbetenden Geweihten</td>
+          <td>+3</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>einzelne Probe der jeweiligen mitbetenden Akoluthen</td>
+          <td>+/- 0</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>je 3 LkP* eines mitbetenden Geweihten</td>
+          <td>1 Bonus auf LkP*</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>je 5 LkP* eines mitbetenden Akoluthen</td>
+          <td>1 Bonus auf LkP*</td>
+        </tr>
+      </tbody>
+    </table> 
+  </div>
+
+</section>
+  
+<!-- JAVASCRIPT ERGÄNZUNGEN -->
+<script>
+  // Füllt das Eingabefeld mit dem Shortcut und sendet das Formular ab
+  function quickRoll(expr) {
+    const input = document.getElementById('expr');
+    input.value = expr;
+    input.form.submit();
+  }
+</script>
+
+
+<script>
+    // Skript für Fernkampf Modifikator
+function updateFkMod() {
+  const getVal = id => document.getElementById(id).value;
+
+  let sum = 0;
+  let darkness = parseInt(getVal("dunkelheit")) || 0;
+
+  // Basiswerte aufsummieren
+  const ids = [
+    "zielgroesse","entfernung","bewegung","deckung","nebel",
+    "sichtbar","schnellschuss","entfernungssinn","steilschuss","seitenwind"
+  ];
+  ids.forEach(id => sum += parseInt(getVal(id)) || 0);
+
+  // Dunkelheit anpassen durch Sonderfähigkeiten
+  const daem = getVal("daemmerungssicht");
+  const nacht = getVal("nachtsicht");
+  const blind = getVal("nachtblind");
+
+  if (daem === "half_darkness") darkness = Math.floor(darkness / 2);
+  if (nacht === "night_darkness") darkness = Math.min(Math.floor(darkness / 2), 5);
+  if (blind === "double_darkness") darkness = Math.min(darkness * 2, 8);
+
+  sum += darkness;
+
+  const resEl = document.getElementById("fkResult");
+  const sign = sum >= 0 ? "+" : "";
+  resEl.textContent = `Gesamt-Modifikator: ${sign}${sum}`;
+}
+
+document.querySelectorAll("#fkForm select").forEach(sel => {
+  sel.addEventListener("change", updateFkMod);
+});
+
+updateFkMod(); // initiale Berechnung
+</script>
+
+
+{% endblock %}
