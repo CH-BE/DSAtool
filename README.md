@@ -19,10 +19,7 @@ Kleines tool für DSA Sachen. Version 2:
 ## To Do:
 
 ### Liturgieproben
-<<<<<<< HEAD
 
-=======
->>>>>>> 5b2e4fb6b5ef858bed270643ec88f472cf3a78d9
 - Dämonenbeschwörung Erschwernisse / Erleichterungen
 - Elementarismus Erschwernisse / Erleichterungen
 
