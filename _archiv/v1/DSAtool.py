@@ -1,10 +1,21 @@
 import random
+<<<<<<< HEAD:_archiv/v1/DSAtool.py
 from pyscript import display
 from pyweb import pydom
 
 
 test = "DURG"
 pydom["div#output"].html = test
+=======
+from pyweb import pydom
+
+
+text_before_roll = "Bitte einmal würfeln."
+pydom["div#output"].html = text_before_roll
+pydom["div#output2"].html = text_before_roll
+pydom["div#output3"].html = text_before_roll
+pydom["div#output4"].html = text_before_roll
+>>>>>>> 5b2e4fb6b5ef858bed270643ec88f472cf3a78d9:DSAtool.py
 
 def trefferzone(event):
     """Roles a d20 and looks up the corresponding damage areas with effects of 
@@ -15,100 +26,112 @@ def trefferzone(event):
 
     if d20 <= 6:
         if (d20 % 2 == 0):
-            output += "\nRechtes Bein!\n"
+            output += "<br \><b>Rechtes Bein!</b><br \>"
         else:
-            output += "\nLinkes Bein!\n"
-        output += "1. Wunde: AT, PA, GE, INI-Basis -2; GE -1\n"
-        output += "2. Wunde: AT, PA, GE, INI-Basis -4; GE -2\n"
+            output += "<br \><b>Linkes Bein!</b><br \>"
+        output += "1. Wunde: AT, PA, GE, INI-Basis -2; GE -1<br \>"
+        output += "2. Wunde: AT, PA, GE, INI-Basis -4; GE -2<br \>"
         output += "3. Wunde: Sturz, kampfunfähig"
     elif d20 > 6 and d20 <= 8:
-        output += "\nBauch!\n"
-        output += "1. Wunde: AT, PA, KO, KK, GS, INI-Basis -1; +1W6 SP\n"
-        output += "2. Wunde: AT, PA, KO, KK, GS, INI-Basis -2; +2W6 SP\n"
+        output += "<br \><b>Bauch!</b><br \>"
+        output += "1. Wunde: AT, PA, KO, KK, GS, INI-Basis -1; +1W6 SP<br \>"
+        output += "2. Wunde: AT, PA, KO, KK, GS, INI-Basis -2; +2W6 SP<br \>"
         output += "3. Wunde: Bewusstlos, Blutverlust"
     elif d20 > 8 and d20 <= 14:
         if d20 % 2 == 0:
-            output += "\nSchwertarm!\n"
+            output += "<br \><b>Schwertarm!</b><br \>"
         else:
-            output += "\nSchildarm!\n"
-        output += "1. Wunde: AT, PA, KK, FF, -2 mit diesem Arm\n"
-        output += "2. Wunde: AT, PA, KK, FF, -4 mit diesem Arm\n"
+            output += "<br \><b>Schildarm!</b><br \>"
+        output += "1. Wunde: AT, PA, KK, FF, -2 mit diesem Arm<br \>"
+        output += "2. Wunde: AT, PA, KK, FF, -4 mit diesem Arm<br \>"
         output += "3. Wunde: Arm handlungsunfähig"
     elif d20 > 14 and d20 <= 18:
-        output += "\nBrust!\n"
-        output += "1. Wunde: AT, PA, KO, KK -1; +1W6 SP\n"
-        output += "2. Wunde: AT, PA, KO, KK -2; +2W6 SP\n"
+        output += "<br \><b>Brust!</b><br \>"
+        output += "1. Wunde: AT, PA, KO, KK -1; +1W6 SP<br \>"
+        output += "2. Wunde: AT, PA, KO, KK -2; +2W6 SP<br \>"
         output += "3. Wunde: Bewusstlos, Blutverlust"
     elif d20 > 18:
-        output += "\nKopf!\n"
-        output += "1. Wunde: MU, KL, IN, INI-Basis -2, INI - 2W6\n"
-        output += "2. Wunde: MU, KL, IN, INI-Basis -4, INI - 4W6\n"
+        output += "<br \><b>Kopf!</b><br \>"
+        output += "1. Wunde: MU, KL, IN, INI-Basis -2, INI - 2W6<br \>"
+        output += "2. Wunde: MU, KL, IN, INI-Basis -4, INI - 4W6<br \>"
         output += "3. Wunde: +2W6 SP, bewusstlos, Blutverlust"
+<<<<<<< HEAD:_archiv/v1/DSAtool.py
     display(output, target="output", append=False)
+=======
+    pydom["div#output"].html = output
+>>>>>>> 5b2e4fb6b5ef858bed270643ec88f472cf3a78d9:DSAtool.py
 
 
 def patzertabelle_fk(event):
     """Roles 2W6 and looks up the effects for failures in RANGED combat"""
 
     patzer = random.randint(1, 6) + random.randint(1, 6)
-    output = "Wurf: %2d\n" % patzer
+    output = "Wurf: %2d<br \>" % patzer
 
     if patzer == 2:
-        output += "Waffe zerstört!\n"
-        output += """INI -4; alle verbleibenden Angriffs- und Abwehraktionen
+        output += "<b>Waffe zerstört!</b><br \>"
+        output += """INI -4<br \>alle verbleibenden Angriffs- und Abwehraktionen
         gehen diese Kampfrunde verloren"""
     elif patzer == 3:
-        output += "Waffe beschädigt!\n"
+        output += "<b>Waffe beschädigt!</b><br \>"
         output += """INI -3; min. 30 Aktionen nötig um Waffe wieder
         schussfähig zu machen (e.g. Sehne wechseln oder Mechanik
         der Armbust entklemmen), bei Wurfwaffe entspricht es Waffe zerstört;
         Schütze verliert alle verbleibenden Angriffs- und Abwehraktionen in
         der Kampfrunde."""
     elif patzer > 3 and patzer <= 10:
-        output += "Fehlschuss!\n"
-        output += "INI -2; 2 Aktionen benötigt um wieder Schussbereit zu sein."
+        output += "<b>Fehlschuss!</b><br \>"
+        output += "INI -2<br \>2 Aktionen benötigt um wieder Schussbereit zu sein."
     elif patzer > 10:
-        output += "Kameraden getroffen!\n"
-        output += """INI -3; TP entsprechend Entfernung auswürfeln. Ansagen
+        output += "<b>Kameraden getroffen!</b><br \>"
+        output += """INI -3<br \>TP entsprechend Entfernung auswürfeln. Ansagen
         kommen nicht zum tragen. Ist kein Gefährte in der Nähe, trifft sich
         der Schütze selbst."""
+<<<<<<< HEAD:_archiv/v1/DSAtool.py
     display(output, target="output3", append=False)
+=======
+    pydom["div#output3"].html = output
+>>>>>>> 5b2e4fb6b5ef858bed270643ec88f472cf3a78d9:DSAtool.py
 
 
 def patzertabelle_nk(event):
     """Roles 2W6 and looks up the effect for failures in MELEE combat"""
 
     patzer = random.randint(1, 6) + random.randint(1, 6)
-    output = "Wurf: %2d\n" % patzer
+    output = "Wurf: %2d<br \>" % patzer
 
     if patzer == 2:
-        output += "Waffe zerstört!\n"
-        output += """INI -4; bei BF <= 0 wird die Waffe nicht zerstört und BF
-        steigt um eins; bei natürlichen Waffen gilt es als Eigentreffer"""
+        output += "<b>Waffe zerstört!</b><br \>"
+        output += """INI -4<br \>bei BF <= 0 wird die Waffe nicht zerstört und BF
+        steigt um eins<br \>bei natürlichen Waffen gilt es als Eigentreffer"""
     elif patzer > 2 and patzer <= 5:
-        output += "Sturz!\n"
-        output += """INI -2; Zum Aufstehen Aktion Position und um BE
+        output += "<b>Sturz!</b><br \>"
+        output += """INI -2<br \>Zum Aufstehen Aktion Position und um BE
         erschwerte GE-Probe nötig. Held mit Sonderfertigkeit Standfest
         oder Vorteil (herausragender) Balance kann GE-Probe erschwert um
         BE werfen, um es in ein Stolpern zu verwandeln."""
     elif patzer > 5 and patzer <= 8:
-        output += "Stolpern!\n"
+        output += "<b>Stolpern!</b><br \>"
         output += "INI -2"
     elif patzer > 8 and patzer <= 10:
-        output += "Waffe verloren!\n"
-        output += """INI -2; Aktion Position und GE-Probe nötig, um wieder an
+        output += "<b>Waffe verloren!</b><br \>"
+        output += """INI -2<br \>Aktion Position und GE-Probe nötig, um wieder an
         Waffe zu gelangen. Im Fall von natürlichen Waffen als Sturz 
         gewertet."""
     elif patzer == 11:
-        output += "An eigener Waffe verletzt!\n"
-        output += """INI -3; Waffenschaden durch eigene Waffe. Keine
+        output += "<b>An eigener Waffe verletzt!</b><br \>"
+        output += """INI -3<br \>Waffenschaden durch eigene Waffe. Keine
         zusätzlichen
         TP durch KK-Bonus oder Ansagen"""
     elif patzer == 12:
-        output += "Schwerer Eigentreffer!\n"
-        output += """INI -4; doppelter Waffenschaden. Keine zusätzlichen TP durch
+        output += "<b>Schwerer Eigentreffer!</b><br \>"
+        output += """INI -4<br \>doppelter Waffenschaden. Keine zusätzlichen TP durch
         KK-Bonus oder Ansagen"""
+<<<<<<< HEAD:_archiv/v1/DSAtool.py
     display(output, target="output2", append=False)
+=======
+    pydom["div#output2"].html = output
+>>>>>>> 5b2e4fb6b5ef858bed270643ec88f472cf3a78d9:DSAtool.py
 
 
 def size_mod(size_str):
@@ -329,6 +352,7 @@ def fk_mod(size, distance, movement, sight1, sight2, sight3, protection="none",
 
 '''
 def fk_html_to_py(*args, **kwargs):
+<<<<<<< HEAD:_archiv/v1/DSAtool.py
     size = f"{Element('size').value}"
     distance = f"{Element('distance').value}"
     movement = f"{Element('movement').value}"
@@ -352,6 +376,32 @@ def fk_html_to_py(*args, **kwargs):
     horsesaddle = f"{Element('horsesaddle').value}"
     underwater = f"{Element('underwater').value}"
     dis = f"{Element('dis').value}"
+=======
+    #result = pydom["div#output4"][0].value
+    size = pydom["select#size"][0].value
+    distance = pydom["select#distance"][0].value
+    movement = pydom["select#movement"][0].value
+    sight1 = pydom["select#sight1"][0].value
+    sight2 = pydom["select#sight1"][0].value
+    sight3 = pydom["select#sight1"][0].value
+    protection = pydom["select#protection"][0].value
+    twilightVision = pydom["select#twilightVision"][0].value
+    distanceView = pydom["select#distanceView"][0].value
+    nightVision = pydom["select#nightVision"][0].value
+    oneEyed = pydom["select#oneEyed"][0].value
+    colorblind = pydom["select#colorblind"][0].value
+    shortsighted = pydom["select#shortsighted"][0].value
+    nightblind = pydom["select#nightblind"][0].value
+    weapontype = pydom["select#weapontype"][0].value
+    steepshot = pydom["select#steepshot"][0].value
+    sidewind = pydom["select#sidewind"][0].value
+    quickshot = pydom["select#quickshot"][0].value
+    range_SF = pydom["select#range_SF"][0].value
+    horseattack = pydom["select#horseattack"][0].value
+    horsesaddle = pydom["select#horsesaddle"][0].value
+    underwater = pydom["select#underwater"][0].value
+    dis = pydom["input#dis"][0].value
+>>>>>>> 5b2e4fb6b5ef858bed270643ec88f472cf3a78d9:DSAtool.py
     dis = int(dis)
     mod_final = fk_mod(size,
                  distance,
@@ -376,8 +426,12 @@ def fk_html_to_py(*args, **kwargs):
                  horsesaddle,
                  underwater,
                  dis)
+<<<<<<< HEAD:_archiv/v1/DSAtool.py
     pyscript.write("output4", mod_final)'
 '''
 
 def fk_html_to_py(event):
     display("DURG!", target="output4", append=False)
+=======
+    pydom["div#output4"].html = mod_final
+>>>>>>> 5b2e4fb6b5ef858bed270643ec88f472cf3a78d9:DSAtool.py

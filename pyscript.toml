@@ -1,0 +1,3 @@
+name = "DSAtool"
+description = "A simple application that helps with battles, healing, miracles etc... in DSA."
+packages = ["pandas"]
